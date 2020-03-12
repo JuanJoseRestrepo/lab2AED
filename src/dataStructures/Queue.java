@@ -3,8 +3,10 @@ package dataStructures;
 public class Queue<E> implements QueueMethods<E>{
 	
 	private Node<E> firstNodeQ;
-	
-	
+
+	public Queue(Node<E> firstNodeQ) {
+		this.firstNodeQ = firstNodeQ;
+	}
 
 	public Node<E> getFirstNodeQ() {
 		return firstNodeQ;
