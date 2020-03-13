@@ -65,7 +65,7 @@ public class Stack<E> implements StackMethods<E> {
 		//
 		//
 		//
-		 Node<E> first = firstNodeS;
+		 Node<E> first = getFirstNodeS();
 		
 		 if(first != null) {
 			 //Obtiene el ultimo por ejemplo tenemos [1,2,3,4| y 4 es el ultimo

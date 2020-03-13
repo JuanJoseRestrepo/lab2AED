@@ -2,32 +2,39 @@ package dataStructures;
 
 public class Queue<E> implements QueueMethods<E>{
 	
-	private Node<E> firstNodeQ;
+	private Node<E> back;
+	private Node<E> front;
 
-	public Queue(Node<E> firstNodeQ) {
-		this.firstNodeQ = firstNodeQ;
+	public Queue(Node<E> back, Node<E>  front) {
+		this.back = back;
+		this.front = front;
 	}
 
-	public Node<E> getFirstNodeQ() {
-		return firstNodeQ;
+	
+
+	public Node<E> getBack() { //last element
+		return back;
 	}
 
-	public void setFirstNodeQ(Node<E> firstNodeQ) {
-		this.firstNodeQ = firstNodeQ;
+	public void setBack(Node<E> back) {
+		this.back = back;
+	}
+	
+	
+	public Node<E> peek() { //first element
+		return front;
 	}
 
-	@Override
-	public Node<E> peek() {
-		Node<E>  last = getFirstNodeQ();
-		return last;
+	public void setFront(Node<E> front) {
+		this.front = front;
 	}
+
 
 	@Override
 	public boolean isEmpty() {
 		boolean empty = false;
-		Node<E>  last = firstNodeQ;
 		
-		if(last == null) {
+		if(peek() == null) {
 			empty = true;
 		}
 	
@@ -37,50 +44,47 @@ public class Queue<E> implements QueueMethods<E>{
 
 	@Override
 	public Node<E> poll() {
-		//TODO
-		return null;
+		Node<E> theOne = peek();
+		
+		if (theOne != null) {
+			
+			Node<E> next2TheOne = theOne.getNext();
+			if (next2TheOne != null) {
+				next2TheOne.setPrior(null);
+			}
+			setFront(next2TheOne);
+		}
+
+		return theOne;
 	}
 
 	@Override
 	public void offer(Node<E> newElement) {
-		Node<E> lastNode = getLastElement() ;
+		Node<E> lastNode = getBack() ;
 		if (lastNode != null) {
 			lastNode.setNext(newElement);
 			newElement.setPrior(lastNode);
-		} else {
-			setFirstNodeQ(newElement);
-		}
+		} 
 		
+		setBack(newElement);
 	}
 
 	@Override
 	public int size() {
 		int number = 0;
-		Node<E>  last = firstNodeQ;
+		Node<E>  last = peek();
 		
 		while(last != null) {
+			++number;
 			last = last.getNext();
-			number++;
+			
 		}
 		
 		return number;
 		
 	}
 	
-	public Node<E> getLastElement() {
-		Node<E>  last = getFirstNodeQ();
-		
-		if (last != null) {
-			
-			while (last.getNext() != null) {
-				last = (Node<E>) last.getNext(); 	
-			}
-			
-		}
-		
-		return last;
-		
-	}
+
 	
 
 } //end of class
