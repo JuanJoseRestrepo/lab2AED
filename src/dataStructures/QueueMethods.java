@@ -2,7 +2,7 @@ package dataStructures;
 
 public interface QueueMethods<E> {
 
-	public void push(Node<E> event);
+	public Node<E> peek();
 	
 	public boolean isEmpty();
 	

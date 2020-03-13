@@ -5,10 +5,10 @@ public class Node<E> {
 	public Node<E> next;
 	public Node<E> prior;
 		
-	public Node(Node<E> next, Node<E> prior) {
+	public Node() {
 		super();
-		this.next = next;
-		this.prior = prior;
+		this.next = null;
+		this.prior = null;
 	}
 
 	public Node<E> getNext() {
@@ -24,7 +24,6 @@ public class Node<E> {
 	public void setPrior(Node<E> prior) {
 		this.prior = prior;
 	}
-	
 	
 	
 } //end of class

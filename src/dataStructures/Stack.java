@@ -58,6 +58,13 @@ public class Stack<E> implements StackMethods<E> {
 
 	@Override
 	public Node<E> pop() {
+		//TODO
+		//
+		//
+		//
+		//
+		//
+		//
 		 Node<E> first = firstNodeS;
 		
 		 if(first != null) {

@@ -17,16 +17,9 @@ public class Queue<E> implements QueueMethods<E>{
 	}
 
 	@Override
-	public void push(Node<E> event) {
-		Node<E>  last = firstNodeQ;
-		
-		if(firstNodeQ != null) {
-			
-			firstNodeQ = firstNodeQ.getNext();
-			last.setPrior(null);
-			last = firstNodeQ;
-		}
-		
+	public Node<E> peek() {
+		Node<E>  last = getFirstNodeQ();
+		return last;
 	}
 
 	@Override
@@ -44,7 +37,7 @@ public class Queue<E> implements QueueMethods<E>{
 
 	@Override
 	public Node<E> poll() {
-		// TODO Auto-generated method stub
+		//TODO
 		return null;
 	}
 
