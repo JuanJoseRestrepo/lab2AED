@@ -23,7 +23,7 @@ public class Stack<E> implements StackMethods<E> {
 	
 	@Override
 	public void push(Node<E> event) {
-		Node<E> first = getLastElement();
+		Node<E> first = peek();
 		
 		if(first != null) {
 			first.setNext(event);
@@ -50,36 +50,40 @@ public class Stack<E> implements StackMethods<E> {
 
 	@Override
 	public Node<E> peek() {
-		// TODO Auto-generated method stub
-		Node<E> element = getLastElement();
+		Node<E>  last = getFirstNodeS();
 		
-		return element;
+		if (last != null) {
+			
+			while (last.getNext() != null) {
+				last = (Node<E>) last.getNext(); 	
+			}
+			
+		}
+		
+		return last;
 	}
 
 	@Override
 	public Node<E> pop() {
-		//TODO
-		//
-		//
-		//
-		//
-		//
-		//
 		 Node<E> first = getFirstNodeS();
-		
+		 Node<E> last = null;
 		 if(first != null) {
 			 //Obtiene el ultimo por ejemplo tenemos [1,2,3,4| y 4 es el ultimo
-			 Node<E> last = getLastElement();
+			 last = peek();
 			 //de aqui obtenemos el 3
+			 
 			 Node<E> aux = last.getPrior();
+			 if(aux != null) {
 			 //Aqui eliminamos el 4 
-			 aux.setNext(last.getNext());
-			 
-			 first = last;
-			 
+				 
+				 aux.setNext(null);
+			 }else {
+				setFirstNodeS(null);
+				
+			 }
 		 }
 		 
-		return first;
+		return last;
 	}
 
 	@Override
@@ -97,19 +101,5 @@ public class Stack<E> implements StackMethods<E> {
 		return number;
 	}
 	
-	public Node<E> getLastElement() {
-		Node<E>  last = getFirstNodeS();
-		
-		if (last != null) {
-			
-			while (last.getNext() != null) {
-				last = (Node<E>) last.getNext(); 	
-			}
-			
-		}
-		
-		return last;
-		
-	}
 
 } //end of class
