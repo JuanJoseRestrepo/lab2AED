@@ -5,9 +5,9 @@ public class Queue<E> implements QueueMethods<E>{
 	private Node<E> back;
 	private Node<E> front;
 
-	public Queue(Node<E> back, Node<E>  front) {
-		this.back = back;
-		this.front = front;
+	public Queue() {
+		this.back = null;
+		this.front = null;
 	}
 
 	

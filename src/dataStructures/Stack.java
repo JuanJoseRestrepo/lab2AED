@@ -7,8 +7,8 @@ public class Stack<E> implements StackMethods<E> {
 	
 	
 
-	public Stack(Node<E> firstNodeS) {
-		this.firstNodeS = firstNodeS;
+	public Stack() {
+		this.firstNodeS = null;
 	}
 
 

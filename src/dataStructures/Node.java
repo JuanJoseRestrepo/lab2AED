@@ -2,13 +2,26 @@ package dataStructures;
 
 public class Node<E> {
 
-	public Node<E> next;
-	public Node<E> prior;
+	private Node<E> next;
+	private Node<E> prior;
+	private E info;
+	
 		
-	public Node() {
+	public Node(E info) {
 		super();
 		this.next = null;
 		this.prior = null;
+		this.info = info;
+	}
+	
+	
+	public E getInfo() {
+		return info;
+	}
+
+
+	public void setInfo(E info) {
+		this.info = info;
 	}
 
 	public Node<E> getNext() {
