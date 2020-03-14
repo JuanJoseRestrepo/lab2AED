@@ -68,10 +68,9 @@ public class Dealer {
 	}
 	
 	public void addGambler(User newGambler) {
-	//TODO
-		NodeH<Integer, User> newOne= new NodeH<Integer, User>(newGambler.getId(),newGambler);
+		
 		Integer theKey = newGambler.getId();
-	//	gamblers.insert(theKey, newOne);
+		gamblers.insert(theKey, newGambler);
 		
 	}
 	

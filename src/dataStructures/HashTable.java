@@ -44,29 +44,35 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 	@Override
 	public void insert(K key, V value) {
 		
-		NodeH<K,V> newNodeH = nodes[index(key)];
+		NodeH<K,V> checkNode = nodes[index(key)];
 		
-		if(newNodeH == null) {
+		if(checkNode == null) {
 			
-			newNodeH = new NodeH<>(key,value);
+			checkNode = new NodeH<>(key,value);
 			
-			nodes[index(key)] = newNodeH;
+			nodes[index(key)] = checkNode;
 			
 		}else {
+			NodeH<K,V> newNode = new NodeH<K,V>(key, value);
 			
-			while(newNodeH != null) {
-				
-				if(newNodeH.getKey().equals(key)) {
-					newNodeH.setValue(value);
-				}
-				newNodeH = newNodeH.getNextNodeH();
-			}
+			newNode.setNextNodeH(checkNode);
+			checkNode.setPriorNodeH(newNode);
+			nodes[index(key)] = newNode;
 			
-			newNodeH = nodes[index(key)];
-			NodeH<K, V> newNodeH2 = new NodeH<K,V>(key, value);
-			newNodeH2.setNextNodeH(newNodeH);
-			newNodeH.setPriorNodeH(newNodeH2);
-			nodes[index(key)] = newNodeH2;
+//			while(checkNode != null) {
+//				
+//				if(checkNode.getKey().equals(key)) {
+//					checkNode.setValue(value);
+//					return;
+//				}
+//				checkNode = checkNode.getNextNodeH();
+//			}
+//			
+//			checkNode = nodes[index(key)];
+//			NodeH<K, V> newNodeH2 = new NodeH<K,V>(key, value);
+//			newNodeH2.setNextNodeH(checkNode);
+//			checkNode.setPriorNodeH(newNodeH2);
+//			nodes[index(key)] = newNodeH2;
 		}
 		
 	}
@@ -89,6 +95,8 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 			}
 			
 			
+		} else {
+			return;
 		}
 		
 	}
