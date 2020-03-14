@@ -16,8 +16,8 @@ public class Stack<E> implements StackMethods<E> {
 		this.firstNodeS = firstNodeS;
 	}
 	
-
-	public Node<E> getFirstNodeS() {
+	@Override
+	public Node<E> peek() {
 		return firstNodeS;
 	}
 	
@@ -26,18 +26,16 @@ public class Stack<E> implements StackMethods<E> {
 		Node<E> first = peek();
 		
 		if(first != null) {
-			first.setNext(event);
-			event.setPrior(first);
-		}else {
-			setFirstNodeS(event);
+			event.setNext(first);
+			first.setPrior(event);
 		}
-		
+		setFirstNodeS(event);
 		
 	}
 
 	@Override
 	public boolean isEmpty() {
-		 Node<E> first = firstNodeS;
+		 Node<E> first = peek();
 		 boolean empty = false;
 		 
 		 if(first == null) {
@@ -48,53 +46,35 @@ public class Stack<E> implements StackMethods<E> {
 		 
 	}
 
-	@Override
-	public Node<E> peek() {
-		Node<E>  last = getFirstNodeS();
-		
-		if (last != null) {
-			
-			while (last.getNext() != null) {
-				last = (Node<E>) last.getNext(); 	
-			}
-			
-		}
-		
-		return last;
-	}
 
 	@Override
 	public Node<E> pop() {
-		 Node<E> first = getFirstNodeS();
-		 Node<E> last = null;
+		 Node<E> first = peek();
+		 
 		 if(first != null) {
-			 //Obtiene el ultimo por ejemplo tenemos [1,2,3,4| y 4 es el ultimo
-			 last = peek();
-			 //de aqui obtenemos el 3
+			
+			 Node<E> aux = first.getNext();
 			 
-			 Node<E> aux = last.getPrior();
 			 if(aux != null) {
-			 //Aqui eliminamos el 4 
-				 
-				 aux.setNext(null);
+				 aux.setPrior(null);
 			 }else {
-				setFirstNodeS(null);
+				setFirstNodeS(aux);
 				
 			 }
 		 }
 		 
-		return last;
+		return first;
 	}
 
 	@Override
 	public int size() {
 		int number = 0;
-		Node<E> first = firstNodeS;
+		Node<E> first = peek();
 		
 		while(first != null) {
-			
+			++number;
 			first = first.getNext();
-			number++;
+			
 		}
 		
 		
