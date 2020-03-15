@@ -61,22 +61,19 @@ public class ThreadTime extends Thread{
 			}else {
 			 msj =  "0"+ minutes + ":" + seconds;
 			}
-			ThreadUpdateTime timer = new ThreadUpdateTime(msj,principalCon);
-			Platform.runLater(timer);
+			ThreadUpdateTime timer1 = new ThreadUpdateTime(msj,principalCon);
+			Platform.runLater(timer1);
 			try {
-				Thread.sleep(100);
+				Thread.sleep(10);
 				
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated catch block 
 				e.printStackTrace();
 			}
 		}
 		
-		
-		if(iniciaHilo == false) {
-			principalCon.finishRace();
-		}
-		
+		ThreadFinish m1 = new ThreadFinish(principalCon);
+		m1.start();
 	}
  
 	public void ejecutarHiloCronometro() {
@@ -96,4 +93,4 @@ public class ThreadTime extends Thread{
 		}
 
 	}
-}
+} //end of class

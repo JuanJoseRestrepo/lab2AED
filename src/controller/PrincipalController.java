@@ -68,10 +68,9 @@ public class PrincipalController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 
 		time.setText("00:00");
+		dealer = new Dealer();
 		scoreInicial.setSpacing(5);
 		scoreInicial.setAlignment(Pos.CENTER);
-		scoreFinal.setSpacing(5);
-		scoreFinal.setAlignment(Pos.CENTER);
 		Image i = new Image("/controller/horseRun.gif",1400,300,false,false);
 		Image o = new Image("/controller/horseHipodromo.jpg",2400,820,true,true);
 		gift.setImage(i);
@@ -88,7 +87,7 @@ public class PrincipalController implements Initializable{
 			dealer = new Dealer();
 			dealer.generateHorses();	
 			beginMethodTime();
-			Label m = new Label("Carrera Inicial");
+			Label m = new Label("First Race");
 			scoreInicial.getChildren().add(m);
 				
 				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
@@ -99,7 +98,7 @@ public class PrincipalController implements Initializable{
 			}else {
 				scoreInicial.getChildren().clear();
 				scoreFinal.getChildren().clear();
-				dealer = null;
+				
 				setTf(true);
 			}
 
@@ -107,12 +106,8 @@ public class PrincipalController implements Initializable{
 	
 	private void beginMethodTime() {
 
-			ThreadTime t = new ThreadTime(this);
-			
+			ThreadTime t = new ThreadTime(this);		
 				t.start();	
-			
-		
-		
 	}
 
 	public void updateTime(String msj) {
@@ -122,8 +117,10 @@ public class PrincipalController implements Initializable{
 	}
 	
 	public void finishRace() {
-		dealer.rematch();
+		dealer.setWinners(false);
 		Label m = new Label("Carrera Final");
+		scoreFinal.setSpacing(5);
+		scoreFinal.setAlignment(Pos.CENTER);
 		scoreFinal.getChildren().add(m);
 		
 		for(int j = 0; j < dealer.getHorsesNames().size();j++) {
