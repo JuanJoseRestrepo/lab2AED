@@ -87,7 +87,7 @@ public class Dealer {
 	
 	public void fillStack4Rematch() {
 		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()];
-		
+		horsesNames = new ArrayList<String>();
 		while (horses.isEmpty() == false) {
 			Node<Horse> nodeInMatter = horses.poll();
 			int pos = nodeInMatter.getInfo().getPosition();
@@ -101,6 +101,7 @@ public class Dealer {
 		while (i>=0) {
 			Node<Horse> best = sortedByPosition[i];
 			horsesRematch.push(best);
+			horsesNames.add(best.getInfo().getHorseName());
 			best.getInfo().setPosition(-1);
 			best.getInfo().setRow(rowNumber);
 			

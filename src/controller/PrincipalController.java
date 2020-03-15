@@ -39,6 +39,14 @@ public class PrincipalController implements Initializable{
 
 	
 	
+	public Label getTime() {
+		return time;
+	}
+
+	public void setTime(Label time) {
+		this.time = time;
+	}
+
 	public boolean isTf() {
 		return tf;
 	}
@@ -61,8 +69,6 @@ public class PrincipalController implements Initializable{
 	
 	public void ramdomTest(ActionEvent e) {
 
-			
-			
 			if(scoreInicial.getChildren().isEmpty() == true) {
 			beginMethodTime();
 			dealer = new Dealer();
@@ -99,8 +105,8 @@ public class PrincipalController implements Initializable{
 		
 	}
 	
-	public void finishRace(ActionEvent e) {
-		
+	public void finishRace() {
+		dealer.rematch();
 	}
 
 }

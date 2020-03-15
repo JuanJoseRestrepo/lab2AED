@@ -17,6 +17,7 @@ public class ThreadTime extends Thread{
 	public ThreadTime(PrincipalController principalCon) {
 		super();
 		this.principalCon = principalCon;
+		setDaemon(true);
 	}
 	
 	 
@@ -48,7 +49,7 @@ public class ThreadTime extends Thread{
 	public void run() {
 		
 		if(principalCon.isTf() == true) {
-			principalCon.setTf(false);
+			principalCon.setTf(false);	
 		}
 		while(iniciaHilo && !principalCon.isTf()) {
 			corriendo = true;
@@ -73,7 +74,7 @@ public class ThreadTime extends Thread{
 		
 		
 		if(iniciaHilo == false) {
-			System.out.println("holi");
+			principalCon.finishRace();
 		}
 		
 	}
