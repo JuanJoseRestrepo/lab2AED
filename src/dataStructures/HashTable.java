@@ -15,6 +15,14 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 		return index;
 	}
 	
+	public NodeH<K, V>[] getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(NodeH<K, V>[] nodes) {
+		this.nodes = nodes;
+	}
+
 	@Override
 	public V getValue(K key) {
 		
