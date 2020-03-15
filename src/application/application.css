@@ -1,1 +1,29 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+*{
+	
+	button_color:yellow;
+	base_color:green;
+	special_color:rgb(0, 0, 255);
+	text_color:black;
+	
+	
+}
+.pane {
+	-fx-background-color: base_color;
+	-fx-background-size: cover;
+}
+
+#principal{
+	-fx-text-fill: button_color;
+	-fx-background-color:special_color ;
+	-fx-font: bold 11pt "Arial";
+}
+.button {
+	-fx-text-fill: text_color;
+	-fx-background-color: button_color;
+	-fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+	-fx-font: bold 11pt "Arial";
+}

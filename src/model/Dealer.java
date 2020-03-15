@@ -74,6 +74,33 @@ public class Dealer {
 		
 	}
 	
+	public void generateHorses() {
+		int numberH = 0;
+		while (numberH < 7) {
+			double numberD = Math.random()*11;	
+			numberH = (int) numberD;
+		}
+		
+		String[] names4Horses = {"Junior", "King", "Meliodas", "Alfonso", "Roberto", "Neegan", "Rick", "Tony", "Jairo", "Freddy"};
+		String[] names4People = {"Alfonso", "Esteban", "Kevin", "Charles", "Pedro", "Donald", "Ricardo", "Valerio", "Samuel", "Troy"};
+		String[] lastName4People = {"Cartman", "Sanchez", "Rincon", "McGill", "Trump", "Da Vinci", "Uzumaki", "Uchiha", "Liones", "Santana"};
+		
+		while (numberH>0) {
+			double nameH = Math.random()*11;	
+			double nameP = Math.random()*11;	
+			double lastNameP = Math.random()*11;	
+			
+			int nameh = (int)nameH;
+			int namep = (int)nameP;
+			int lastNamep = (int)lastNameP;
+			
+			Horse newHorse = new Horse(names4People[namep]+" "+lastName4People[lastNamep], names4Horses[nameh]);
+			addHorseQueue(newHorse);
+			--numberH;
+		}
+		
+	}
+	
 	
 	
 } //end of class
