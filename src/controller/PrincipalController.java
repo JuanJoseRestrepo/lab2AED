@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import model.Dealer;
+import model.*;
 
 public class PrincipalController implements Initializable{
 
@@ -32,6 +32,14 @@ public class PrincipalController implements Initializable{
 	private Label time;
 	@FXML
 	private Button ramdom;
+	@FXML
+	private Button addHorse;
+	@FXML
+	private Button addBet;
+	@FXML
+	private Button searchBet;
+	@FXML
+	private Button rematch;
 	
 	private Dealer dealer;
 	
@@ -68,6 +76,28 @@ public class PrincipalController implements Initializable{
 		Image o = new Image("/controller/horseHipodromo.jpg",2400,820,true,true);
 		gift.setImage(i);
 		hipodrome.setImage(o);
+	}
+	
+	public void addHorse() {
+		Horse newHorse = new Horse("","");
+		if (dealer.addHorseQueue(newHorse) == false) {
+			//TODO
+			//show message, horse couldnt be added
+		}
+	}
+	
+	public void addBet() {
+		//TODO
+		User newUser = new User(0,"",0,null);
+		dealer.addGambler(newUser);
+	}
+	
+	public void searchBet() {
+		//TODO
+	}
+	
+	public void rematch() {
+		//TODO
 	}
 	
 	public void ramdomTest(ActionEvent e) {
@@ -117,4 +147,4 @@ public class PrincipalController implements Initializable{
 		
 	}
 
-}
+} //end of class

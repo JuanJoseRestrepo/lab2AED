@@ -70,29 +70,21 @@ public class Dealer {
 
 
 
-	public void addHorseQueue(Horse newHorse) {
+	public boolean addHorseQueue(Horse newHorse) {
+		boolean possible = false;
+		if (getNumberOfHorses()<10) {
+			setNumberOfHorses(getNumberOfHorses()+1);
+			newHorse.setRow(getNumberOfHorses());
+			
+			Node<Horse> newOne= new Node<Horse>(newHorse);
+			getHorses().offer(newOne);
+			possible = true;
+		}
 		
-		setNumberOfHorses(getNumberOfHorses()+1);
-		newHorse.setRow(getNumberOfHorses());
-		
-		Node<Horse> newOne= new Node<Horse>(newHorse);
-		getHorses().offer(newOne);
+		return possible;
 	
 	}
 	
-	public void rematch() {
-		//TODO
-		fillStack4Rematch();
-	
-		
-	}
-	
-	public void startMatch() {
-		//TODO
-		fillStack4Rematch();
-	
-		
-	}
 	
 	public void setWinners(boolean rematch) {
 		Node<Horse> firstHorse = getHorses().peek();
@@ -123,7 +115,9 @@ public class Dealer {
 		
 	}
 	
-
+	//THE ONLY WAY TO INVOCATE THIS METHOD, IS IF THERE IS ALREADY A QUEUE AND THE RACE IS OVER
+	//, OTHERWISE IT WONT WORK
+	
 	public void fillStack4Rematch() {
 		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()];
 		horsesNames = new ArrayList<String>();
@@ -164,6 +158,13 @@ public class Dealer {
 		//add gambler able
 		//3'after gambles are closed;
 	}
+	
+	public void rematch() {
+		fillStack4Rematch();
+	
+		
+	}
+	
 	
 	public void generateHorses() {
 		int numberH = 0;
