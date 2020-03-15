@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import dataStructures.*;
 
 public class Dealer {
@@ -8,17 +10,31 @@ public class Dealer {
 	private Stack<Horse> horsesRematch;
 	private HashTable<Integer, User> gamblers;
 	private int numberOfHorses;
+	private ArrayList<String> horsesNames;
 	
 	public Dealer() {
 		super();
+		horsesNames = new ArrayList<String>();
 		this.horses = new Queue<Horse>();
 		this.horsesRematch = new Stack<Horse>();
 		this.gamblers = new HashTable<Integer, User>();
 		this.numberOfHorses = 0;
+	} 
+	
+	
+	
+	public ArrayList<String> getHorsesNames() {
+		return horsesNames;
 	}
-	
-	
-	
+
+
+
+	public void setHorsesNames(ArrayList<String> horsesNames) {
+		this.horsesNames = horsesNames;
+	}
+
+
+
 	public Queue<Horse> getHorses() {
 		return horses;
 	}
@@ -86,15 +102,16 @@ public class Dealer {
 		String[] lastName4People = {"Cartman", "Sanchez", "Rincon", "McGill", "Trump", "Da Vinci", "Uzumaki", "Uchiha", "Liones", "Santana"};
 		
 		while (numberH>0) {
-			double nameH = Math.random()*11;	
-			double nameP = Math.random()*11;	
-			double lastNameP = Math.random()*11;	
+			double nameH = Math.random()*10;	
+			double nameP = Math.random()*10;	
+			double lastNameP = Math.random()*10;	
 			
 			int nameh = (int)nameH;
 			int namep = (int)nameP;
 			int lastNamep = (int)lastNameP;
 			
 			Horse newHorse = new Horse(names4People[namep]+" "+lastName4People[lastNamep], names4Horses[nameh]);
+			horsesNames.add(newHorse.getHorseName());
 			addHorseQueue(newHorse);
 			--numberH;
 		}

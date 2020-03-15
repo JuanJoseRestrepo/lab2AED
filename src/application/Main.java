@@ -17,6 +17,7 @@ public class Main extends Application {
 			root.getStylesheets().add("/application/application.css");
 			root.getStyleClass().add("pane");
 			Scene scene = new Scene(root);
+			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

@@ -4,11 +4,17 @@
 	
 	button_color:yellow;
 	base_color:green;
-	special_color:rgb(0, 0, 255);
+	special_color:rgb(0, 153, 51);
 	text_color:black;
 	
 	
 }
+
+.label{
+	-fx-text-fill: text_color;
+	-fx-font: bold 10pt "Arial";
+}
+
 .pane {
 	-fx-background-color: base_color;
 	-fx-background-size: cover;
