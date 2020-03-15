@@ -85,6 +85,36 @@ public class Dealer {
 		
 	}
 	
+//	public void setWinners() {
+//		Node<Horse> firstHorse = getHorses().peek();
+//		
+//		while (firstHorse != null) {
+//			
+//			double posD = Math.random()* (getNumberOfHorses()+1);
+//			int pos = (int) posD;
+//			
+//			firstHorse = firstHorse.getNext();
+//			
+//		}
+//		
+//	}
+//	
+//	public void setWinnersRematch() {
+//		Node<Horse> firstHorse = getHorsesRematch().peek();
+//		int i = 1;
+//		
+//		while (firstHorse != null) {
+//			
+//			double posD = Math.random()* (getNumberOfHorses()+1);
+//			int pos = (int) posD;
+//			
+//			firstHorse = firstHorse.getNext();
+//			
+//		}
+//		
+//	}
+//	
+	
 	public void fillStack4Rematch() {
 		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()];
 		horsesNames = new ArrayList<String>();

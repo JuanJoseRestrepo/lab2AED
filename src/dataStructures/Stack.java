@@ -59,7 +59,8 @@ public class Stack<E> implements StackMethods<E> {
 				 aux.setPrior(null);
 				 
 			 }
-				setFirstNodeS(aux);
+			setFirstNodeS(aux);
+
 		 }
 		 
 		return first;
