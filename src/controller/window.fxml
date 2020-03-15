@@ -22,7 +22,7 @@
       <Button layoutX="40.0" layoutY="163.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="New Match" />
       <ImageView fx:id="gift" fitHeight="44.0" fitWidth="264.0" layoutX="266.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
       <VBox fx:id="scoreInicial" layoutX="200.0" layoutY="187.0" prefHeight="200.0" prefWidth="100.0" />
-      <VBox layoutX="423.0" layoutY="187.0" prefHeight="200.0" prefWidth="100.0" />
+      <VBox fx:id="scoreFinal" layoutX="423.0" layoutY="187.0" prefHeight="200.0" prefWidth="100.0" />
       <Button fx:id="ramdom" layoutX="40.0" layoutY="345.0" mnemonicParsing="false" onAction="#ramdomTest" prefHeight="27.0" prefWidth="96.0" text="Simulation" />
    </children>
 </Pane>

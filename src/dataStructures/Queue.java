@@ -64,7 +64,9 @@ public class Queue<E> implements QueueMethods<E>{
 		if (lastNode != null) {
 			lastNode.setNext(newElement);
 			newElement.setPrior(lastNode);
-		} 
+		} else {
+			setFront(newElement);
+		}
 		
 		setBack(newElement);
 	}
