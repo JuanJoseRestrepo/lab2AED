@@ -194,6 +194,20 @@ public class Dealer {
 		
 	}
 	
+	public Horse[] sortByPosition() {
+		Node<Horse> first = getHorses().peek();
+		Horse[] horsesSorted = new Horse[getNumberOfHorses()+1];
+		
+		while (first != null) {
+			horsesSorted[first.getInfo().getPosition()] = first.getInfo();		
+			first.getNext();
+		}
+		
+		return horsesSorted;
+		
+	}
+	
+	
 	
 	
 } //end of class

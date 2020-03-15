@@ -146,13 +146,16 @@ public class PrincipalController implements Initializable{
 	
 	public void finishRace() {
 		dealer.setWinners(false);
+		
 		Label m = new Label("Carrera Final");
 		scoreFinal.setSpacing(5);
 		scoreFinal.setAlignment(Pos.CENTER);
 		scoreFinal.getChildren().add(m);
 		
-		for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-			Label aux = new Label(dealer.getHorsesNames().get(j));
+		Horse[] horsesSorted = dealer.sortByPosition();
+		
+		for(int j = 1; j <= horsesSorted.length;j++) {
+			Label aux = new Label(horsesSorted[j].getHorseName());
 			scoreFinal.getChildren().add(aux);
 		}
 		
