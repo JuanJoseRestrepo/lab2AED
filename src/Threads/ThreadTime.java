@@ -64,19 +64,16 @@ public class ThreadTime extends Thread{
 			ThreadUpdateTime timer1 = new ThreadUpdateTime(msj,principalCon);
 			Platform.runLater(timer1);
 			try {
-				Thread.sleep(100);
+				Thread.sleep(10);
 				
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated catch block 
 				e.printStackTrace();
 			}
 		}
 		
-		
-		if(iniciaHilo == false) {
-			principalCon.finishRace();
-		}
-		
+		ThreadFinish m1 = new ThreadFinish(principalCon);
+		m1.start();
 	}
  
 	public void ejecutarHiloCronometro() {

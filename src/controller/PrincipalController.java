@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Threads.ThreadTime;
@@ -10,11 +11,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+
 import model.*;
+
+import javafx.util.Callback;
+
 
 public class PrincipalController implements Initializable{
 
@@ -70,14 +80,13 @@ public class PrincipalController implements Initializable{
 		dealer = new Dealer();
 		scoreInicial.setSpacing(5);
 		scoreInicial.setAlignment(Pos.CENTER);
-		scoreFinal.setSpacing(5);
-		scoreFinal.setAlignment(Pos.CENTER);
 		Image i = new Image("/controller/horseRun.gif",1400,300,false,false);
 		Image o = new Image("/controller/horseHipodromo.jpg",2400,820,true,true);
 		gift.setImage(i);
 		hipodrome.setImage(o);
 	}
 	
+
 	public void addHorse() {
 		Horse newHorse = new Horse("","");
 		if (dealer.addHorseQueue(newHorse) == false) {
@@ -98,7 +107,7 @@ public class PrincipalController implements Initializable{
 	
 	public void rematch() {
 		//TODO
-	}
+	}	
 	
 	public void ramdomTest(ActionEvent e) {
 
@@ -116,11 +125,11 @@ public class PrincipalController implements Initializable{
 				
 			}else {
 				scoreInicial.getChildren().clear();
-				scoreInicial.getChildren().clear();
+				scoreFinal.getChildren().clear();
 				
 				setTf(true);
 			}
-			
+
 	}
 	
 	private void beginMethodTime() {
@@ -137,8 +146,10 @@ public class PrincipalController implements Initializable{
 	
 	public void finishRace() {
 		dealer.setWinners(false);
-//		Label m = new Label("Carrera Final");
-//		scoreFinal.getChildren().add(m);
+		Label m = new Label("Carrera Final");
+		scoreFinal.setSpacing(5);
+		scoreFinal.setAlignment(Pos.CENTER);
+		scoreFinal.getChildren().add(m);
 		
 		for(int j = 0; j < dealer.getHorsesNames().size();j++) {
 			Label aux = new Label(dealer.getHorsesNames().get(j));

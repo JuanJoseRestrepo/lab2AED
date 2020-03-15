@@ -26,5 +26,11 @@ class HashTableTest {
 		setupEscenario();
 		assertEquals(table.getValue(15),140);
 	}
+	
+	@Test
+	void testSearchValue() {
+		setupEscenario();
+		assertEquals(table.search(15),140);
+	}
 
 }
