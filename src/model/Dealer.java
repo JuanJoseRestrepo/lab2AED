@@ -80,6 +80,34 @@ public class Dealer {
 	}
 	
 	public void rematch() {
+		//TODO
+		fillStack4Rematch();
+		
+	}
+	
+	public void fillStack4Rematch() {
+		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()];
+		
+		while (horses.isEmpty() == false) {
+			Node<Horse> nodeInMatter = horses.poll();
+			int pos = nodeInMatter.getInfo().getPosition();
+			--pos;
+			sortedByPosition[pos] = nodeInMatter;
+			
+		}
+		int rowNumber =1;
+		int i = sortedByPosition.length;
+		--i;
+		while (i>=0) {
+			Node<Horse> best = sortedByPosition[i];
+			horsesRematch.push(best);
+			best.getInfo().setPosition(-1);
+			best.getInfo().setRow(rowNumber);
+			
+			--i;
+			++rowNumber;
+			
+		}
 		
 	}
 	
