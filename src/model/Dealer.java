@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import dataStructures.*;
 
@@ -85,36 +86,36 @@ public class Dealer {
 		
 	}
 	
-//	public void setWinners() {
-//		Node<Horse> firstHorse = getHorses().peek();
-//		
-//		while (firstHorse != null) {
-//			
-//			double posD = Math.random()* (getNumberOfHorses()+1);
-//			int pos = (int) posD;
-//			
-//			firstHorse = firstHorse.getNext();
-//			
-//		}
-//		
-//	}
-//	
-//	public void setWinnersRematch() {
-//		Node<Horse> firstHorse = getHorsesRematch().peek();
-//		int i = 1;
-//		
-//		while (firstHorse != null) {
-//			
-//			double posD = Math.random()* (getNumberOfHorses()+1);
-//			int pos = (int) posD;
-//			
-//			firstHorse = firstHorse.getNext();
-//			
-//		}
-//		
-//	}
-//	
+	public void setWinners(boolean rematch) {
+		Node<Horse> firstHorse = getHorses().peek();
+		
+		if (rematch) {
+			firstHorse = getHorsesRematch().peek();
+		}
+		
+		int[] positionsGiven = new int[getNumberOfHorses()+1];
+		Arrays.fill(positionsGiven, 0);	
+		
+		while (firstHorse != null) {
+			
+			double posD = Math.random()* (getNumberOfHorses()+1);
+			int pos = (int) posD;
+			
+			if (positionsGiven[pos] == 0) {
+				if (firstHorse.getInfo().getPosition() == -1) {
+					firstHorse.getInfo().setPosition(pos);
+					positionsGiven[pos] = pos;
+					firstHorse = firstHorse.getNext();
+				}
+				
+			}
+			
+			
+		}
+		
+	}
 	
+
 	public void fillStack4Rematch() {
 		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()];
 		horsesNames = new ArrayList<String>();
