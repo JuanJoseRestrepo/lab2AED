@@ -1,65 +1,95 @@
 package Threads;
 
 import controller.PrincipalController;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 
 public class ThreadTime extends Thread{
 
-	private Label time;
+	
+	private boolean iniciaHilo = true;
+	private boolean corriendo = false;
+	private int seconds = 0;
+	private int minutes = 0;
+	
 	private PrincipalController principalCon;
 
-	public ThreadTime(PrincipalController principalCon,Label time) {
+	public ThreadTime(PrincipalController principalCon) {
 		super();
 		this.principalCon = principalCon;
-		this.time = time;
 	}
 	
+	 
+	
+	public boolean isCorriendo() {
+		return corriendo;
+	}
+
+
+
+	public void setCorriendo(boolean corriendo) {
+		this.corriendo = corriendo;
+	}
+
+
+
+	public boolean isIniciaHilo() {
+		return iniciaHilo;
+	}
+
+
+
+	public void setIniciaHilo(boolean iniciaHilo) {
+		this.iniciaHilo = iniciaHilo;
+	}
+
+
+
 	public void run() {
 		
-		int x =0;
-		
-		while(principalCon.isCorriendo() == true) {
+		while(iniciaHilo) {
+			corriendo = true;
+			principalCon.setTf(true);
+			String msj = "";
+			ejecutarHiloCronometro();
+			
+			if(seconds < 10) {
+			 msj =  "0"+ minutes + ":" + "0" + seconds;
+			}else {
+			 msj =  "0"+ minutes + ":" + seconds;
+			}
+			ThreadUpdateTime timer = new ThreadUpdateTime(msj,principalCon);
+			Platform.runLater(timer);
 			try {
-				ejecutarHiloCronometro(x);
-				Thread.sleep(1000);
-				x++;
+				Thread.sleep(100);
+				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
+		if(iniciaHilo == false) {
+			System.out.println("holi");
+		}
+		
 	}
 
-	public void ejecutarHiloCronometro(int numero) {
-		principalCon.setSeconds(principalCon.getSeconds()+1);
+	public void ejecutarHiloCronometro() {
+		seconds++;
 		
-		if(principalCon.getSeconds() > 59) {
-			principalCon.setSeconds(0);
-			principalCon.setMinutes(principalCon.getMinutes()+1);
+		if(seconds > 59) {
+			seconds = 00;
+			minutes++;
 		}
-		
-		String seg = "", min = "";
-		
-		if(principalCon.getSeconds() < 10) {
-			seg = "0" + principalCon.getSeconds();
-		}else {
-			seg = "" + principalCon.getSeconds();
+	 
+		if(minutes == 3){
+			corriendo =false;
+			iniciaHilo = false;
+			minutes = 00;
+			seconds = 00;
+			principalCon.setTf(false);
 		}
-		
-		if(principalCon.getMinutes() < 3) {
-			min = "0" + principalCon.getSeconds();
-		}else if(principalCon.getMinutes() == 3){
-			min = "03" + principalCon.getSeconds();
-			principalCon.setCorriendo(false);
-			principalCon.setIniciaHilo(false);
-			principalCon.setMinutes(0);
-			principalCon.setSeconds(0);
-			Label m = new Label("00:00");
-			principalCon.setTime(m);
-		}
-		
-		String timer = min + ":" + seg;
-		time.setText(timer);
+
 	}
 }

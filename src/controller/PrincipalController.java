@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Threads.ThreadTime;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,97 +33,71 @@ public class PrincipalController implements Initializable{
 	@FXML
 	private Button ramdom;
 	
-	private boolean iniciaHilo = false;
-	private boolean corriendo = false;
-	
 	private Dealer dealer;
 	
+	private boolean tf = false;
 
-	private int seconds = 0;
-	private int minutes = 0;
 	
 	
-	public Label getTime() {
-		return time;
+	public boolean isTf() {
+		return tf;
 	}
 
-	public void setTime(Label time) {
-		this.time = time;
-	}
-	
-	public int getSeconds() {
-		return seconds;
-	}
-
-	public void setSeconds(int seconds) {
-		this.seconds = seconds;
-	}
-
-	public int getMinutes() {
-		return minutes;
-	}
-
-	public void setMinutes(int minutes) {
-		this.minutes = minutes;
-	}
-
-	public boolean isIniciaHilo() {
-		return iniciaHilo;
-	}
-
-	public void setIniciaHilo(boolean iniciaHilo) {
-		this.iniciaHilo = iniciaHilo;
-	}
-
-	public boolean isCorriendo() {
-		return corriendo;
-	}
-
-	public void setCorriendo(boolean corriendo) {
-		this.corriendo = corriendo;
+	public void setTf(boolean tf) {
+		this.tf = tf;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		time.setText("00:00");
-		dealer = new Dealer();
+		scoreInicial.setSpacing(5);
+		scoreInicial.setAlignment(Pos.CENTER);
 		Image i = new Image("/controller/horseRun.gif",1400,300,false,false);
 		Image o = new Image("/controller/horseHipodromo.jpg",2400,820,true,true);
 		gift.setImage(i);
 		hipodrome.setImage(o);
-	//	scoreInicial.setSpacing(5);
-	//	scoreInicial.setAlignment(Pos.CENTER);
-		
-	//	Label m = new Label("Carrera Inicial");
-	//	scoreInicial.getChildren().add(m);
-		
-	//	for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-	//		Label aux = new Label(dealer.getHorsesNames().get(j));
-	//		scoreInicial.getChildren().add(aux);
-	//	}
-		
 	}
 	
 	public void ramdomTest(ActionEvent e) {
-		
-		if(corriendo == false) {
-			iniciaHilo = true;
-			corriendo = true;
+
+			
+			
+			if(scoreInicial.getChildren().isEmpty() == true) {
 			beginMethodTime();
-		}
-		
+			dealer = new Dealer();
+			dealer.generateHorses();		
+			Label m = new Label("Carrera Inicial");
+			scoreInicial.getChildren().add(m);
+				
+				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+					Label aux = new Label(dealer.getHorsesNames().get(j));
+					scoreInicial.getChildren().add(aux);
+				}
+				
+			}else {
+				scoreInicial.getChildren().clear();
+				dealer = null;
+			}
+			
 	}
 	
 	private void beginMethodTime() {
+
+			ThreadTime t = new ThreadTime(this);
+			if(tf == false) {
+				t.start();	
+			}
 		
-		if(iniciaHilo == true) {
-			ThreadTime t = new ThreadTime(this,time);
-			t.start();
-		}
 		
 	}
 
+	public void updateTime(String msj) {
+		
+		time.setText(msj);
+		
+	}
+	
 	public void finishRace(ActionEvent e) {
 		
 	}
