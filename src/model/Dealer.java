@@ -83,6 +83,14 @@ public class Dealer {
 	public void rematch() {
 		//TODO
 		fillStack4Rematch();
+	
+		
+	}
+	
+	public void startMatch() {
+		//TODO
+		fillStack4Rematch();
+	
 		
 	}
 	
@@ -150,6 +158,13 @@ public class Dealer {
 		
 	}
 	
+	public void startRace() {
+		generateHorses();
+		//start counting time
+		//add gambler able
+		//3'after gambles are closed;
+	}
+	
 	public void generateHorses() {
 		int numberH = 0;
 		while (numberH < 7) {
@@ -157,12 +172,12 @@ public class Dealer {
 			numberH = (int) numberD;
 		}
 		
-		String[] names4Horses = {"Junior", "King", "Meliodas", "Alfonso", "Roberto", "Neegan", "Rick", "Tony", "Jairo", "Freddy"};
+		String[] names4Horses = {"Junior", "King", "Meliodas", "Alfonso", "Roberto", "Neegan", "Rick", "Tony", "Jairo", "Freddy","Berthe","Reynard","Fredelia","Anthony","Emmye","Wandis","Tiphani","Robin","Anica","Egor","Sigfried","Anya","Ardin","Loni","Lexine","Tye","Maria","Gwendolen","Tyler","Cyndi","Glenine","Raymond","Bill","Tonia","Deeanne"};
 		String[] names4People = {"Alfonso", "Esteban", "Kevin", "Charles", "Pedro", "Donald", "Ricardo", "Valerio", "Samuel", "Troy"};
 		String[] lastName4People = {"Cartman", "Sanchez", "Rincon", "McGill", "Trump", "Da Vinci", "Uzumaki", "Uchiha", "Liones", "Santana"};
 		
 		while (numberH>0) {
-			double nameH = Math.random()*10;	
+			double nameH = Math.random()*35;	
 			double nameP = Math.random()*10;	
 			double lastNameP = Math.random()*10;	
 			

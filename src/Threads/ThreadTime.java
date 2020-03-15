@@ -61,8 +61,8 @@ public class ThreadTime extends Thread{
 			}else {
 			 msj =  "0"+ minutes + ":" + seconds;
 			}
-			ThreadUpdateTime timer = new ThreadUpdateTime(msj,principalCon);
-			Platform.runLater(timer);
+			ThreadUpdateTime timer1 = new ThreadUpdateTime(msj,principalCon);
+			Platform.runLater(timer1);
 			try {
 				Thread.sleep(100);
 				
@@ -96,4 +96,4 @@ public class ThreadTime extends Thread{
 		}
 
 	}
-}
+} //end of class

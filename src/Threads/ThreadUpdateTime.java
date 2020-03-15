@@ -14,7 +14,9 @@ public class ThreadUpdateTime extends Thread {
 	}
 	
 	public void run() {
+		if(!m.isTf()) {
 		m.updateTime(msj);
+		}
 	}
 	
 }
