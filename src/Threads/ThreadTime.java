@@ -47,9 +47,11 @@ public class ThreadTime extends Thread{
 
 	public void run() {
 		
-		while(iniciaHilo) {
+		if(principalCon.isTf() == true) {
+			principalCon.setTf(false);
+		}
+		while(iniciaHilo && !principalCon.isTf()) {
 			corriendo = true;
-			principalCon.setTf(true);
 			String msj = "";
 			ejecutarHiloCronometro();
 			
@@ -69,12 +71,13 @@ public class ThreadTime extends Thread{
 			}
 		}
 		
+		
 		if(iniciaHilo == false) {
 			System.out.println("holi");
 		}
 		
 	}
-
+ 
 	public void ejecutarHiloCronometro() {
 		seconds++;
 		

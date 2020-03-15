@@ -78,6 +78,7 @@ public class PrincipalController implements Initializable{
 			}else {
 				scoreInicial.getChildren().clear();
 				dealer = null;
+				setTf(true);
 			}
 			
 	}
@@ -85,9 +86,9 @@ public class PrincipalController implements Initializable{
 	private void beginMethodTime() {
 
 			ThreadTime t = new ThreadTime(this);
-			if(tf == false) {
+			
 				t.start();	
-			}
+			
 		
 		
 	}
