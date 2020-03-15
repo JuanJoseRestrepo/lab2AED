@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Threads.ThreadTime;
@@ -10,11 +11,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import model.Dealer;
+import model.Horse;
+import model.User;
 
 public class PrincipalController implements Initializable{
 
@@ -69,6 +78,10 @@ public class PrincipalController implements Initializable{
 		hipodrome.setImage(o);
 	}
 	
+	public void addUser() {
+		
+	}
+	
 	public void ramdomTest(ActionEvent e) {
 
 			if(scoreInicial.getChildren().isEmpty() == true) {
@@ -85,11 +98,11 @@ public class PrincipalController implements Initializable{
 				
 			}else {
 				scoreInicial.getChildren().clear();
-				scoreInicial.getChildren().clear();
+				scoreFinal.getChildren().clear();
 				dealer = null;
 				setTf(true);
 			}
-			
+
 	}
 	
 	private void beginMethodTime() {
