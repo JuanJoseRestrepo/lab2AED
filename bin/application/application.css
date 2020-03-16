@@ -10,6 +10,53 @@
 	
 }
 
+.dialog {
+	
+	-fx-background-color: base_color;
+}
+
+.dialog > *.buttonbar > *.container {
+	
+	-fx-background-color: base_color;/*BAD*/
+}
+
+.dialog > *.content.label {
+	
+	-fx-text-fill:text_color;
+	-fx-font: bold 11pt "Arial";/*TFONT*/
+}
+
+.dialog *.button {
+	
+	-fx-background-color: special_color;
+	-fx-font: bold 10pt "Arial";/*HFONT*/
+	-fx-border-radius: 5;
+	-fx-text-fill: text_color;
+
+}
+
+.dialog:header *.header-panel {
+	
+	-fx-background-color: base_color;/*BAD*/
+}
+
+.vehicle {
+	
+	-fx-background-color: transparent;
+	-fx-font: bold 11pt "Arial";
+}
+
+.delete {
+	
+	-fx-background-color: black;
+	-fx-text-fill: special_color;
+}
+
+.register{
+	-fx-text-fill: special_color;
+}
+
+
 .label{
 	-fx-text-fill: text_color;
 	-fx-font: bold 10pt "Arial";

@@ -106,7 +106,7 @@ public class Dealer {
 		
 		while (firstHorse != null) {
 			
-			double posD = Math.random()* (getNumberOfHorses()+1);
+			double posD = Math.random()* (getNumberOfHorses());
 			int pos = (int) posD;
 			
 			if (positionsGiven[pos] == 0) {
@@ -134,7 +134,7 @@ public class Dealer {
 			sortedByPosition[pos] = nodeInMatter;
 			
 		}
-		int rowNumber =1;
+		int rowNumber =1; 
 		int i = sortedByPosition.length;
 		--i;
 		while (i>=0) {
@@ -171,9 +171,8 @@ public class Dealer {
 			double numberD = Math.random()*11;	
 			numberH = (int) numberD;
 		}
-		
-		String[] names4Horses = {"Junior", "King", "Meliodas", "Alfonso", "Roberto", "Neegan", "Rick", "Tony", "Jairo", "Freddy","Berthe","Reynard","Fredelia","Anthony","Emmye","Wandis","Tiphani","Robin","Anica","Egor","Sigfried","Anya","Ardin","Loni","Lexine","Tye","Maria","Gwendolen","Tyler","Cyndi","Glenine","Raymond","Bill","Tonia","Deeanne"};
-		String[] names4People = {"Alfonso", "Esteban", "Kevin", "Charles", "Pedro", "Donald", "Ricardo", "Valerio", "Samuel", "Troy"};
+		 
+		String[] names4Horses = {"Junior", "King", "Meliodas", "Alfonso", "Roberto", "Neegan", "Rick", "Tony", "Jairo", "Freddy","Berthe","Reynard","Fredelia","Anthony","Emmye","Wandis","Tiphani","Robin","Anica","Egor","Sigfried","Anya","Ardin","Loni","Lexine","Tye","Maria","Gwendolen","Tyler","Cyndi","Glenine","Raymond","Bill","Tonia","Deeanne","Gabriel","Yun","Santiago","Gord","Lilo","Stitch","Cesar","Rubius","Mangel","Alex","Ruben","Ramiro","Karlos","Selena","Helena","Daisy","Yom","Stephani","Winston","Zac","Zachary","Kino","Diego","Torr","Juano","Buga"};		String[] names4People = {"Alfonso", "Esteban", "Kevin", "Charles", "Pedro", "Donald", "Ricardo", "Valerio", "Samuel", "Troy"};
 		String[] lastName4People = {"Cartman", "Sanchez", "Rincon", "McGill", "Trump", "Da Vinci", "Uzumaki", "Uchiha", "Liones", "Santana"};
 		
 		while (numberH>0) {
@@ -193,6 +192,17 @@ public class Dealer {
 		
 	}
 	
-	
+	public Horse[] sortByPosition() {
+		Node<Horse> first = getHorses().peek();
+		Horse[] horsesSorted = new Horse[getNumberOfHorses()+1];
+		
+		while (first != null) {
+			horsesSorted[first.getInfo().getPosition()] = first.getInfo();		
+			first.getNext();
+		}
+		
+		return horsesSorted;
+		
+	}
 	
 } //end of class
