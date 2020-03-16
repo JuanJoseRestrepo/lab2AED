@@ -9,10 +9,17 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrincipalController">
    <children>
+<<<<<<< HEAD
       <Button layoutX="40.0" layoutY="200.0" mnemonicParsing="false" onAction="#addHorse" prefHeight="27.0" prefWidth="96.0" text="Add Horse" />
       <Button layoutX="40.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Rematch" />
       <Button layoutX="40.0" layoutY="238.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Add Bet" />
       <Button layoutX="40.0" layoutY="274.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Search Bet" />
+=======
+      <Button fx:id="addHorse" layoutX="40.0" layoutY="200.0" mnemonicParsing="false" onAction="#addHorse" prefHeight="27.0" prefWidth="96.0" text="Add Horse" />
+      <Button fx:id="rematch" layoutX="40.0" layoutY="310.0" mnemonicParsing="false" onAction="#rematch" prefHeight="27.0" prefWidth="96.0" text="Rematch" />
+      <Button fx:id="addBet" layoutX="40.0" layoutY="238.0" mnemonicParsing="false" onAction="#addBet" prefHeight="27.0" prefWidth="96.0" text="Add Bet" />
+      <Button fx:id="searchBet" layoutX="40.0" layoutY="274.0" mnemonicParsing="false" onAction="#searchBet" prefHeight="27.0" prefWidth="96.0" text="Search Bet" />
+>>>>>>> 8bd11b4a2596a428aac4ce4c1e190225873c7f38
       <Label fx:id="time" layoutX="523.0" layoutY="14.0" prefHeight="33.0" prefWidth="65.0" />
       <Label fx:id="principal" layoutX="14.0" layoutY="21.0" prefHeight="119.0" prefWidth="222.0" text="    WELCOME TO HIPODROME">
          <font>
@@ -21,7 +28,7 @@
       <ImageView fx:id="hipodrome" fitHeight="128.0" fitWidth="314.0" layoutX="266.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="gift" fitHeight="44.0" fitWidth="264.0" layoutX="266.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
       <VBox fx:id="scoreInicial" layoutX="200.0" layoutY="187.0" prefHeight="200.0" prefWidth="100.0" />
-      <VBox fx:id="scoreFinal" layoutX="423.0" layoutY="187.0" prefHeight="200.0" prefWidth="100.0" />
+      <VBox fx:id="scoreFinal" layoutX="423.0" layoutY="187.0" onDragDetected="#addHorse" prefHeight="200.0" prefWidth="100.0" />
       <Button fx:id="ramdom" layoutX="40.0" layoutY="167.0" mnemonicParsing="false" onAction="#ramdomTest" prefHeight="27.0" prefWidth="96.0" text="New Match" />
    </children>
 </Pane>
