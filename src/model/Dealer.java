@@ -205,11 +205,5 @@ public class Dealer {
 		return horsesSorted;
 		
 	}
-<<<<<<< HEAD
-=======
-	
-	
-	
->>>>>>> 8bd11b4a2596a428aac4ce4c1e190225873c7f38
 	
 } //end of class

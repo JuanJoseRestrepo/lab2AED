@@ -31,13 +31,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-<<<<<<< HEAD
 import javafx.stage.Stage;
-=======
 
 import model.*;
 
->>>>>>> 8bd11b4a2596a428aac4ce4c1e190225873c7f38
 import javafx.util.Callback;
 
 
@@ -124,7 +121,7 @@ public class PrincipalController implements Initializable{
 		
 	}
 	
-<<<<<<< HEAD
+
 	public void addHorse(ActionEvent e) {
 		Dialog<Horse> dialog = new Dialog<>();
 		dialog.setTitle("");
@@ -177,26 +174,8 @@ public class PrincipalController implements Initializable{
 		}else {
 			System.out.println("No");
 		}
-=======
+}
 
-	public void addHorse() {
-		Horse newHorse = new Horse("","");
-		if (dealer.addHorseQueue(newHorse) == false) {
-			//TODO
-			//show message, horse couldnt be added
-		}
-	}
-	
-	public void addBet() {
-		//TODO
-		User newUser = new User(0,"",0,null);
-		dealer.addGambler(newUser);
-	}
-	
-	public void searchBet() {
-		//TODO
->>>>>>> 8bd11b4a2596a428aac4ce4c1e190225873c7f38
-	}
 	
 	public void rematch() {
 		//TODO
@@ -239,11 +218,7 @@ public class PrincipalController implements Initializable{
 	
 	public void finishRace() {
 		dealer.setWinners(false);
-<<<<<<< HEAD
-	
-=======
-		
->>>>>>> 8bd11b4a2596a428aac4ce4c1e190225873c7f38
+
 		Label m = new Label("Carrera Final");
 		scoreFinal.setSpacing(5);
 		scoreFinal.setAlignment(Pos.CENTER);
