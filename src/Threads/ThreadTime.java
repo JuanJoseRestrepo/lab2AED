@@ -64,7 +64,7 @@ public class ThreadTime extends Thread{
 			ThreadUpdateTime timer1 = new ThreadUpdateTime(msj,principalCon);
 			Platform.runLater(timer1);
 			try {
-				Thread.sleep(10);
+				Thread.sleep(1000);
 				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block 

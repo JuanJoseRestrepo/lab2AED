@@ -93,25 +93,30 @@ public class Dealer {
 			firstHorse = getHorsesRematch().peek();
 		}
 		
-		int[] positionsGiven = new int[getNumberOfHorses()+1];
-		Arrays.fill(positionsGiven, 0);	
+		ArrayList<Horse> positionsGiven = new ArrayList<Horse>();
+		positionsGiven.add(null);
 		
 		while (firstHorse != null) {
+			positionsGiven.add(firstHorse.getInfo());
+			firstHorse = firstHorse.getNext();
 			
-			double posD = Math.random()* (getNumberOfHorses());
-			int pos = (int) posD;
 			
-			if (positionsGiven[pos] == 0) {
-				if (firstHorse.getInfo().getPosition() == -1) {
-					firstHorse.getInfo().setPosition(pos);
-					positionsGiven[pos] = pos;
-					firstHorse = firstHorse.getNext();
-				}
-				
+		}
+		
+		int pos = 1;
+		while (pos <= getNumberOfHorses()) {
+			double posD = Math.random()* (positionsGiven.size());
+			int posI = (int) posD;
+			
+			if (posI != 0 && positionsGiven.get(posI).getPosition() == -1) {
+				positionsGiven.get(posI).setPosition(pos);
+				positionsGiven.remove(posI);
+				++pos;
 			}
 			
 			
 		}
+		
 		
 	}
 	
@@ -199,7 +204,7 @@ public class Dealer {
 		
 		while (first != null) {
 			horsesSorted[first.getInfo().getPosition()] = first.getInfo();		
-			first.getNext();
+			first = first.getNext();
 		}
 		
 		return horsesSorted;

@@ -63,7 +63,7 @@ public class PrincipalController implements Initializable{
 	@FXML
 	private Button rematch;
 	
-	private Dealer dealer = new Dealer();
+	private Dealer dealer;
 	
 	private boolean tf = false;
 	
@@ -102,7 +102,7 @@ public class PrincipalController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		dealer = new Dealer();
 		time.setText("00:00");
 		scoreInicial.setSpacing(5);
 		scoreInicial.setAlignment(Pos.CENTER);
@@ -171,7 +171,39 @@ public class PrincipalController implements Initializable{
 		Optional<Horse> m1 = dialog.showAndWait();
 		
 		if(m1.isPresent()) {
-			dealer.addHorseQueue(m1.get());
+			System.out.println(dealer.getHorses().size());
+			if(dealer.getHorses().size() < 6) {
+				dealer.addHorseQueue(m1.get());
+				dealer.getHorsesNames().add(m1.get().getHorseName());
+			}else if(dealer.getHorses().size() == 6) {
+				beginMethodTime();
+				Label m = new Label("First Race");
+				scoreInicial.getChildren().add(m);
+					
+					for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+						Label aux = new Label(dealer.getHorsesNames().get(j));
+						scoreInicial.getChildren().add(aux);
+					}
+					System.out.println("Entre aqui hptass");
+					
+			}else if(dealer.getHorses().size() >= 7 && dealer.getHorses().size() <= 9) {
+				
+				dealer.addHorseQueue(m1.get());
+				dealer.getHorsesNames().add(m1.get().getHorseName());
+				Label nameHorse = new Label(m1.get().getHorseName());
+				scoreInicial.getChildren().add(nameHorse);
+				System.out.println("LOL");
+				
+			}else if(dealer.getHorses().size() > 9) {
+    			Alert gameOver = new Alert(AlertType.INFORMATION);
+    			gameOver.setTitle("Game Over!");
+    			gameOver.setHeaderText("No puedes poner el puntaje vacio!");
+    			setCss(dialog);
+    			gameOver.setContentText(
+    					"Perdiste!!! Noooooooo");
+    			gameOver.showAndWait();
+			}
+			
 			System.out.println("Si");
 		}else {
 			System.out.println("No");
@@ -186,15 +218,16 @@ public class PrincipalController implements Initializable{
 	public void ramdomTest(ActionEvent e) {
 
 			if(scoreInicial.getChildren().isEmpty() == true) {
-			dealer = new Dealer();
+			//dealer = new Dealer();
 			dealer.generateHorses();	
 			beginMethodTime();
-			Label m = new Label("First Race");
+			Label m = new Label("ROW - HORSE NAME");
 			scoreInicial.getChildren().add(m);
-				
+			int row =1;
 				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-					Label aux = new Label(dealer.getHorsesNames().get(j));
+					Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
 					scoreInicial.getChildren().add(aux);
+					++row;
 				}
 				
 			}else {
@@ -220,16 +253,17 @@ public class PrincipalController implements Initializable{
 	
 	public void finishRace() {
 		dealer.setWinners(false);
-
-		Label m = new Label("Carrera Final");
-		scoreFinal.getChildren().add(m);
-		dealer.generateHorses();	
-//		
-//		Horse[] horsesSorted = dealer.sortByPosition();
-//		
-		for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-			Label aux = new Label(dealer.getHorsesNames().get(j));
+		
+		
+		Label m = new Label("PODIUM");
+		scoreFinal.getChildren().add(m);	
+		
+		Horse[] horsesSorted = dealer.sortByPosition();
+		int pos = 1;
+		for(int j = 1; j < horsesSorted.length;j++) {
+			Label aux = new Label(pos+". "+horsesSorted[j].getHorseName());
 			scoreFinal.getChildren().add(aux);
+			++pos;
 		}
 		
 	}
