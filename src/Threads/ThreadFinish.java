@@ -10,18 +10,23 @@ public class ThreadFinish extends Thread {
 	public ThreadFinish(PrincipalController m) {
 		super();
 		this.m = m;
+		setDaemon(true);
 	}
 	
 	public void run() {
-		Runnable win = new Runnable() {
 
+		Runnable win1 = new Runnable() {
+			
 			@Override
 			public void run() {
 				m.finishRace();
-			}	
-		};
+			}
 			
-			Platform.runLater(win);
+			
+		};
+		
+		Platform.runLater(win1);
+
 	}
 	
 }

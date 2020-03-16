@@ -106,6 +106,8 @@ public class PrincipalController implements Initializable{
 		time.setText("00:00");
 		scoreInicial.setSpacing(5);
 		scoreInicial.setAlignment(Pos.CENTER);
+		scoreFinal.setSpacing(5);
+		scoreFinal.setAlignment(Pos.CENTER);
 		Image i = new Image("/controller/horseRun.gif",1400,300,false,false);
 		Image o = new Image("/controller/horseHipodromo.jpg",2400,820,true,true);
 		gift.setImage(i);
@@ -220,14 +222,13 @@ public class PrincipalController implements Initializable{
 		dealer.setWinners(false);
 
 		Label m = new Label("Carrera Final");
-		scoreFinal.setSpacing(5);
-		scoreFinal.setAlignment(Pos.CENTER);
 		scoreFinal.getChildren().add(m);
-		
-		Horse[] horsesSorted = dealer.sortByPosition();
-		
-		for(int j = 1; j <= horsesSorted.length;j++) {
-			Label aux = new Label(horsesSorted[j].getHorseName());
+		dealer.generateHorses();	
+//		
+//		Horse[] horsesSorted = dealer.sortByPosition();
+//		
+		for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+			Label aux = new Label(dealer.getHorsesNames().get(j));
 			scoreFinal.getChildren().add(aux);
 		}
 		
