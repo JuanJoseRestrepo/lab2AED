@@ -217,6 +217,14 @@ public class PrincipalController implements Initializable{
 			System.out.println("Si");
 			System.out.println(dealer.getHorses().size());
 		}else {
+			Label m4 = new Label("ROW - HORSE NAME");
+			scoreInicial.getChildren().add(m4);
+				
+				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+					Label aux = new Label(dealer.getHorsesNames().get(j));
+					scoreInicial.getChildren().add(aux);
+				}
+			
 			System.out.println("No");
 		}
 }
