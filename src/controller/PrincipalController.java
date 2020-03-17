@@ -133,6 +133,10 @@ public class PrincipalController implements Initializable{
 			
 		}
 		
+		searchBet.setDisable(true);
+		rematch.setDisable(true);
+		addBet.setDisable(true);
+
 	}
 	
 
