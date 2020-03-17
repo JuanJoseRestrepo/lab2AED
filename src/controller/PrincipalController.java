@@ -159,7 +159,7 @@ public class PrincipalController implements Initializable{
 		grid.add(text2, 2, 2);
 		dialog.getDialogPane().setContent(grid);
 		
-		ButtonType buttonTypeOk = new ButtonType("Okay", ButtonData.OK_DONE);
+		ButtonType buttonTypeOk = new ButtonType("Accept", ButtonData.OK_DONE);
 		dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
 		
 		dialog.setResultConverter(new Callback<ButtonType, Horse>() {
@@ -257,6 +257,7 @@ public class PrincipalController implements Initializable{
 		}else {
 			scoreInicial.getChildren().clear();
 			scoreFinal.getChildren().clear();
+			dealer.getHorsesNames().clear();
 			setTf1(true);
 			setTf(true);
 		}

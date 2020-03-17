@@ -10,20 +10,28 @@
 	
 }
 
+.dialog-pane{
+  -fx-border-color:black;
+  -fx-border-width:2.0px;
+ }
+ 
 .dialog {
 	
 	-fx-background-color: base_color;
+	  -fx-border-color:black;
+ 	 -fx-border-width:2.0px;
 }
 
-.dialog > *.buttonbar > *.container {
-	
-	-fx-background-color: base_color;/*BAD*/
-}
+.dialog-pane > .button-bar > .container {
+    -fx-padding: 0.833em; /* 10px */
 
-.dialog > *.content.label {
-	
-	-fx-text-fill:text_color;
-	-fx-font: bold 11pt "Arial";/*TFONT*/
+  }
+
+.dialog-pane > .content.label {
+   -fx-padding: 0.5em 0.5em 0.5em 0.5em;
+   -fx-background-color: yellow;
+   -fx-text-fill:black;
+   -fx-font-size:15.0px;
 }
 
 .dialog *.button {
@@ -35,9 +43,8 @@
 
 }
 
-.dialog:header *.header-panel {
-	
-	-fx-background-color: base_color;/*BAD*/
+.dialog-pane:header .header-panel {
+  -fx-background-color: yellow;
 }
 
 .vehicle {
@@ -45,6 +52,12 @@
 	-fx-background-color: transparent;
 	-fx-font: bold 11pt "Arial";
 }
+
+.dialog-pane .button:hover{     
+  -fx-background-color:white;
+  -fx-text-fill:black;
+  -fx-font-weight:bold; 
+ }
 
 .delete {
 	
@@ -65,6 +78,8 @@
 .pane {
 	-fx-background-color: base_color;
 	-fx-background-size: cover;
+	  -fx-border-color:black;
+  -fx-border-width:2.0px;
 }
 
 #principal{
