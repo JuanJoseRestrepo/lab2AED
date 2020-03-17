@@ -11,10 +11,13 @@ public class ThreadFinish extends Thread {
 		super();
 		this.m = m;
 		setDaemon(true);
+		System.out.println("asdasd");
 	}
 	
 	public void run() {
 
+		
+		
 		Runnable win1 = new Runnable() {
 			
 			@Override
@@ -25,8 +28,7 @@ public class ThreadFinish extends Thread {
 			
 		};
 		
-		Platform.runLater(win1);
-
-	}
+			Platform.runLater(win1);}
+		
 	
 }

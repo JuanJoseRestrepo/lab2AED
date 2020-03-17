@@ -16,11 +16,23 @@ class NodeTest{
 		Node q1 =  new Node(1);
 		Node q2 = new Node(2);
 		Node q3 = new Node(3);
+		Node q4 =  new Node(4);
+		Node q5 = new Node(5);
+		Node q6 = new Node(6);
+		Node q7 =  new Node(7);
+		Node q8 = new Node(8);
+		Node q9 = new Node(9);
 		
 		queue.offer(q1);
 		queue.offer(q2);
 		queue.offer(q3);
-	}
+		queue.offer(q4);
+		queue.offer(q5);
+		queue.offer(q6);
+		queue.offer(q7);
+		queue.offer(q8);
+		queue.offer(q9);
+	} 
 	@Test
 	void test() {
 		setupEscenario();
@@ -52,6 +64,12 @@ class NodeTest{
 	@Test
 	void testIsEmpty1() {
 		setupEscenario();
+		queue.poll();
+		queue.poll();
+		queue.poll();
+		queue.poll();
+		queue.poll();
+		queue.poll();
 		queue.poll();
 		queue.poll();
 		queue.poll();

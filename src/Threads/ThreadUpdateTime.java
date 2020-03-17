@@ -24,9 +24,8 @@ public class ThreadUpdateTime extends Thread {
 				m.updateTime(msj);
 			}	
 		};
-			
-			Platform.runLater(win);
-			
+
+				Platform.runLater(win);
 			
 }
 	

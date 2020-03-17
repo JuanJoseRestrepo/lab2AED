@@ -67,6 +67,18 @@ public class PrincipalController implements Initializable{
 	
 	private boolean tf = false;
 	
+	private boolean tf1 = false;
+	
+	
+	
+	public boolean isTf1() {
+		return tf1;
+	}
+
+	public void setTf1(boolean tf1) {
+		this.tf1 = tf1;
+	}
+
 	public <T extends Dialog<?>> void setCss(T dialog) {
 		
 		DialogPane dialogPane = dialog.getDialogPane();
@@ -104,9 +116,9 @@ public class PrincipalController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		dealer = new Dealer();
 		time.setText("00:00");
-		scoreInicial.setSpacing(5);
+		scoreInicial.setSpacing(3);
 		scoreInicial.setAlignment(Pos.CENTER);
-		scoreFinal.setSpacing(5);
+		scoreFinal.setSpacing(3);
 		scoreFinal.setAlignment(Pos.CENTER);
 		Image i = new Image("/controller/horseRun.gif",1400,300,false,false);
 		Image o = new Image("/controller/horseHipodromo.jpg",2400,820,true,true);
@@ -125,6 +137,11 @@ public class PrincipalController implements Initializable{
 	
 
 	public void addHorse(ActionEvent e) {
+		if(!scoreInicial.getChildren().isEmpty()) {
+			scoreInicial.getChildren().clear();
+			scoreFinal.getChildren().clear();
+		}
+	
 		Dialog<Horse> dialog = new Dialog<>();
 		dialog.setTitle("");
 		dialog.setHeaderText("This is a custom dialog. Enter info and \n" +
@@ -171,40 +188,34 @@ public class PrincipalController implements Initializable{
 		Optional<Horse> m1 = dialog.showAndWait();
 		
 		if(m1.isPresent()) {
-			System.out.println(dealer.getHorses().size());
-			if(dealer.getHorses().size() < 6) {
+			
 				dealer.addHorseQueue(m1.get());
+				if(dealer.getHorsesNames().size() <= 10) {
 				dealer.getHorsesNames().add(m1.get().getHorseName());
-			}else if(dealer.getHorses().size() == 6) {
-				beginMethodTime();
-				Label m = new Label("First Race");
+				}
+				Label m = new Label("ROW - HORSE NAME");
 				scoreInicial.getChildren().add(m);
 					
 					for(int j = 0; j < dealer.getHorsesNames().size();j++) {
 						Label aux = new Label(dealer.getHorsesNames().get(j));
 						scoreInicial.getChildren().add(aux);
 					}
+				
+				if(dealer.getHorses().size() == 7) {
+				beginMethodTime();
 					System.out.println("Entre aqui hptass");
-					
-			}else if(dealer.getHorses().size() >= 7 && dealer.getHorses().size() <= 9) {
 				
-				dealer.addHorseQueue(m1.get());
-				dealer.getHorsesNames().add(m1.get().getHorseName());
-				Label nameHorse = new Label(m1.get().getHorseName());
-				scoreInicial.getChildren().add(nameHorse);
-				System.out.println("LOL");
-				
-			}else if(dealer.getHorses().size() > 9) {
+			}else if(dealer.getHorses().size() >= 10) {
     			Alert gameOver = new Alert(AlertType.INFORMATION);
     			gameOver.setTitle("Game Over!");
     			gameOver.setHeaderText("No puedes poner el puntaje vacio!");
-    			setCss(dialog);
     			gameOver.setContentText(
     					"Perdiste!!! Noooooooo");
     			gameOver.showAndWait();
 			}
 			
 			System.out.println("Si");
+			System.out.println(dealer.getHorses().size());
 		}else {
 			System.out.println("No");
 		}
@@ -233,7 +244,7 @@ public class PrincipalController implements Initializable{
 			}else {
 				scoreInicial.getChildren().clear();
 				scoreFinal.getChildren().clear();
-				
+				setTf1(true);
 				setTf(true);
 			}
 

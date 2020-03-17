@@ -71,9 +71,12 @@ public class ThreadTime extends Thread{
 				e.printStackTrace();
 			}
 		}
+
 		
 		ThreadFinish m1 = new ThreadFinish(principalCon);
 		m1.start();
+				
+			 
 	}
  
 	public void ejecutarHiloCronometro() {
