@@ -12,6 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/controller/window.fxml"));
 			Pane root = (Pane) loader.load();
 			root.getStylesheets().add("/application/application.css");
@@ -20,6 +21,7 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -28,4 +30,5 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-}
+	
+} //end of class

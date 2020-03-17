@@ -144,12 +144,11 @@ public class PrincipalController implements Initializable{
 	
 		Dialog<Horse> dialog = new Dialog<>();
 		dialog.setTitle("");
-		dialog.setHeaderText("This is a custom dialog. Enter info and \n" +
-		    "press Okay (or click title bar 'X' for cancel).");
+		dialog.setHeaderText("Please type the horseman's name and the horse's \n name in order to register the horse for the race");
 		dialog.setResizable(false);
 		 
-		Label label1 = new Label("Name: ");
-		Label label2 = new Label("Phone: ");
+		Label label1 = new Label("Horseman's name: ");
+		Label label2 = new Label("Horse's name: ");
 		TextField text1 = new TextField();
 		TextField text2 = new TextField();
 		         
@@ -191,16 +190,21 @@ public class PrincipalController implements Initializable{
 			
 				dealer.addHorseQueue(m1.get());
 				if(dealer.getHorsesNames().size() <= 10) {
+					
 				dealer.getHorsesNames().add(m1.get().getHorseName());
 				}
+				
 				Label m = new Label("ROW - HORSE NAME");
 				scoreInicial.getChildren().add(m);
 					
-					for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-						Label aux = new Label(dealer.getHorsesNames().get(j));
-						scoreInicial.getChildren().add(aux);
-					}
-				
+				int row =1;
+				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+					Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
+					scoreInicial.getChildren().add(aux);
+					++row;
+				}
+					 
+				 
 				if(dealer.getHorses().size() == 7) {
 				beginMethodTime();
 					System.out.println("Entre aqui hptass");
@@ -219,12 +223,12 @@ public class PrincipalController implements Initializable{
 		}else {
 			Label m4 = new Label("ROW - HORSE NAME");
 			scoreInicial.getChildren().add(m4);
-				
-				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-					Label aux = new Label(dealer.getHorsesNames().get(j));
-					scoreInicial.getChildren().add(aux);
-				}
-			
+			int row =1;
+			for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+				Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
+				scoreInicial.getChildren().add(aux);
+				++row;
+			}
 			System.out.println("No");
 		}
 }
@@ -236,32 +240,33 @@ public class PrincipalController implements Initializable{
 	
 	public void ramdomTest(ActionEvent e) {
 
-			if(scoreInicial.getChildren().isEmpty() == true) {
+		if(scoreInicial.getChildren().isEmpty() == true) {
 			//dealer = new Dealer();
 			dealer.generateHorses();	
 			beginMethodTime();
 			Label m = new Label("ROW - HORSE NAME");
 			scoreInicial.getChildren().add(m);
+			
 			int row =1;
-				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-					Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
-					scoreInicial.getChildren().add(aux);
-					++row;
-				}
-				
-			}else {
-				scoreInicial.getChildren().clear();
-				scoreFinal.getChildren().clear();
-				setTf1(true);
-				setTf(true);
+			for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+				Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
+				scoreInicial.getChildren().add(aux);
+				++row;
 			}
+			
+		}else {
+			scoreInicial.getChildren().clear();
+			scoreFinal.getChildren().clear();
+			setTf1(true);
+			setTf(true);
+		}
 
 	}
 	
 	private void beginMethodTime() {
 
-			ThreadTime t = new ThreadTime(this);		
-				t.start();	
+		ThreadTime t = new ThreadTime(this);		
+		t.start();	
 	}
 
 	public void updateTime(String msj) {
