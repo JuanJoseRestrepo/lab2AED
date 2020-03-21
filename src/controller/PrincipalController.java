@@ -365,7 +365,7 @@ public class PrincipalController implements Initializable{
 			scoreInicial.getChildren().add(aux);
 			++row;
 		}
-		
+		beginMethodRematch();
 		dealer.getHorsesNamesRematch().clear();
 		
 	}
@@ -397,6 +397,13 @@ public class PrincipalController implements Initializable{
 		ThreadTime t = new ThreadTime(this);		
 		t.start();	
 	}
+	
+	private void beginMethodRematch(){
+		
+		ThreadTime t = new ThreadTime(this);		
+		t.start();	
+		
+	}
 
 	public void updateTime(String msj) {
 		
@@ -423,6 +430,15 @@ public class PrincipalController implements Initializable{
 		dealer.setNumberOfHorses(0);
 		ramdom.setDisable(false);
 		rematch.setDisable(false);
+	}
+	
+	public void finishRaceRematch() {
+		
+		dealer.setWinners(false);
+
+		Label m = new Label("PODIUM");
+		scoreFinal.getChildren().add(m);
+		
 	}
 
 } //end of class
