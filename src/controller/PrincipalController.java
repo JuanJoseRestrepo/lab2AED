@@ -141,6 +141,7 @@ public class PrincipalController implements Initializable{
 	
 
 	public void addHorse(ActionEvent e) {
+		
 		if(!scoreInicial.getChildren().isEmpty()) {
 			scoreInicial.getChildren().clear();
 			scoreFinal.getChildren().clear();
@@ -235,7 +236,75 @@ public class PrincipalController implements Initializable{
 			}
 			System.out.println("No");
 		}
-}
+	}
+	
+	
+	public void searchBet(ActionEvent e) {
+		
+		if(!scoreInicial.getChildren().isEmpty()) {
+			scoreInicial.getChildren().clear();
+			scoreFinal.getChildren().clear();
+		}
+	
+		Dialog<String> dialog = new Dialog<>();
+		dialog.setTitle("");
+		dialog.setHeaderText("Please type the ID linked to the bet:");
+		dialog.setResizable(false);
+		 
+		Label label1 = new Label("ID: ");
+
+		TextField text1 = new TextField();
+		
+		         
+		GridPane grid = new GridPane();
+		grid.add(label1, 1, 1);
+		grid.add(text1, 2, 1);
+
+		dialog.getDialogPane().setContent(grid);
+		
+		ButtonType buttonTypeOk = new ButtonType("Search", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
+		
+		dialog.setResultConverter(new Callback<ButtonType, String>() {
+		    @Override
+		    public String call(ButtonType b) {
+		 
+		        if (b == buttonTypeOk) {
+		        	
+		        	try {
+		        		int mustBeNumber = Integer.parseInt(text1.getText());
+			        	
+			        	if(!text1.getText().isEmpty() ) {
+			        	String theKey = text1.getText();	
+			            return theKey;
+			        	}else {
+			        		Alert gameOver = new Alert(AlertType.INFORMATION);
+			    			gameOver.setTitle("ERROR");
+			    			gameOver.setHeaderText("Please check the ID, it is empty...");
+			    			gameOver.showAndWait();
+			        	}
+					} catch (Exception e2) {
+						Alert gameOver = new Alert(AlertType.INFORMATION);
+		    			gameOver.setTitle("ERROR");
+		    			gameOver.setHeaderText("Please check the ID, it must be a number!");
+		    			gameOver.showAndWait();
+					}
+		        	
+		        }
+		 
+		        return null;
+		    }
+		});
+		setCss(dialog);
+		Optional<String> m1 = dialog.showAndWait();
+		
+		if(m1.isPresent()) {
+		//TODO
+		
+		}else {
+			//TODO
+		}
+	}
 
 	
 	public void rematch() {

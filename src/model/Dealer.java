@@ -211,4 +211,10 @@ public class Dealer {
 		
 	}
 	
+	public User search4Gambler(String key) {
+		//TODO
+		
+		return null;
+	}
+	
 } //end of class
