@@ -126,6 +126,8 @@ public class PrincipalController implements Initializable{
 		hipodrome.setImage(o);
 		Label m4 = new Label("ROW - HORSE NAME");
 		scoreInicial.getChildren().add(m4);
+		Label m5 = new Label("PODIUM");
+		scoreFinal.getChildren().add(m5);
 		
 		searchBet.setDisable(true);
 		rematch.setDisable(true);
@@ -349,9 +351,28 @@ public class PrincipalController implements Initializable{
 	}
 
 	
-	public void rematch() {
-		//TODO
-	}	
+	public void rematch(ActionEvent e) {
+		
+
+		scoreInicial.getChildren().clear();
+		scoreFinal.getChildren().clear();
+		Label m = new Label("ROW - HORSE NAME");
+		scoreInicial.getChildren().add(m);
+		
+		int row = 1;
+		for(int j = 0; j < dealer.getHorsesNamesRematch().size();j++) {	
+			Label aux = new Label(row+" - "+ dealer.getHorsesNamesRematch().get(j));
+			scoreInicial.getChildren().add(aux);
+			++row;
+		}
+		
+		dealer.getHorsesNamesRematch().clear();
+		
+	}
+	
+	public void addBet(ActionEvent e) {
+		
+	}
 	
 	public void ramdomTest(ActionEvent e) {
 			//dealer = new Dealer();
@@ -396,7 +417,7 @@ public class PrincipalController implements Initializable{
 			scoreFinal.getChildren().add(aux);
 			++pos;
 		}
-		
+		dealer.fillStack4Rematch();
 		dealer.getHorses().clearQueue();
 		dealer.getHorsesNames().clear();
 		dealer.setNumberOfHorses(0);

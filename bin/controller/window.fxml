@@ -12,11 +12,11 @@
 
       <Button layoutX="40.0" layoutY="200.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Add Horse" />
       <Button layoutX="40.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Rematch" />
-      <Button fx:id="addBet" layoutX="40.0" layoutY="238.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Add Bet" />
+      <Button fx:id="addBet" layoutX="40.0" layoutY="238.0" mnemonicParsing="false" onAction="#addBet" prefHeight="27.0" prefWidth="96.0" text="Add Bet" />
       <Button layoutX="40.0" layoutY="274.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Search Bet" />
 
       <Button fx:id="addHorse" layoutX="40.0" layoutY="200.0" mnemonicParsing="false" onAction="#addHorse" prefHeight="27.0" prefWidth="96.0" text="Add Horse" />
-      <Button fx:id="rematch" layoutX="40.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="96.0" text="Rematch" />
+      <Button fx:id="rematch" layoutX="40.0" layoutY="310.0" mnemonicParsing="false" onAction="#rematch" prefHeight="27.0" prefWidth="96.0" text="Rematch" />
    
       <Button fx:id="searchBet" layoutX="40.0" layoutY="274.0" mnemonicParsing="false" onAction="#searchBet" prefHeight="27.0" prefWidth="96.0" text="Search Bet" />
 

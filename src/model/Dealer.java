@@ -12,10 +12,12 @@ public class Dealer {
 	private HashTable<Integer, User> gamblers;
 	private int numberOfHorses;
 	private ArrayList<String> horsesNames;
+	private ArrayList<String> horsesNamesRematch;
 	 
 	public Dealer() {
 		super();
 		horsesNames = new ArrayList<String>();
+		horsesNamesRematch = new ArrayList<String>();
 		this.horses = new Queue<Horse>();
 		this.horsesRematch = new Stack<Horse>();
 		this.gamblers = new HashTable<Integer, User>();
@@ -99,8 +101,6 @@ public class Dealer {
 		while (firstHorse != null) {
 			positionsGiven.add(firstHorse.getInfo());
 			firstHorse = firstHorse.getNext();
-			
-			
 		}
 		
 		int pos = 1;
@@ -125,7 +125,6 @@ public class Dealer {
 	
 	public void fillStack4Rematch() {
 		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()];
-		horsesNames = new ArrayList<String>();
 		while (horses.isEmpty() == false) {
 			Node<Horse> nodeInMatter = horses.poll();
 			int pos = nodeInMatter.getInfo().getPosition();
@@ -138,8 +137,8 @@ public class Dealer {
 		--i;
 		while (i>=0) {
 			Node<Horse> best = sortedByPosition[i];
+			horsesNamesRematch.add(best.getInfo().getHorseName());
 			horsesRematch.push(best);
-			horsesNames.add(best.getInfo().getHorseName());
 			best.getInfo().setPosition(-1);
 			best.getInfo().setRow(rowNumber);
 			
@@ -150,6 +149,18 @@ public class Dealer {
 		
 	}
 	
+	public ArrayList<String> getHorsesNamesRematch() {
+		return horsesNamesRematch;
+	}
+
+
+
+	public void setHorsesNamesRematch(ArrayList<String> horsesNamesRematch) {
+		this.horsesNamesRematch = horsesNamesRematch;
+	}
+
+
+
 	public void addGambler(User newGambler) {
 		
 		Integer theKey = newGambler.getId();
