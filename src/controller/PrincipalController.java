@@ -278,16 +278,10 @@ public class PrincipalController implements Initializable{
 			        	String theKey = text1.getText();	
 			            return theKey;
 			        	}else {
-			        		Alert gameOver = new Alert(AlertType.INFORMATION);
-			    			gameOver.setTitle("ERROR");
-			    			gameOver.setHeaderText("Please check the ID, it is empty...");
-			    			gameOver.showAndWait();
+			        		showAlert(2);
 			        	}
 					} catch (Exception e2) {
-						Alert gameOver = new Alert(AlertType.INFORMATION);
-		    			gameOver.setTitle("ERROR");
-		    			gameOver.setHeaderText("Please check the ID, it must be a number!");
-		    			gameOver.showAndWait();
+						showAlert(1);
 					}
 		        	
 		        }
@@ -299,11 +293,29 @@ public class PrincipalController implements Initializable{
 		Optional<String> m1 = dialog.showAndWait();
 		
 		if(m1.isPresent()) {
-		//TODO
+		
 		
 		}else {
 			//TODO
 		}
+	}
+	
+	public void showAlert(int msg) {
+		Alert gameOver = new Alert(AlertType.INFORMATION);
+		gameOver.setTitle("ERROR");
+		switch (msg) {
+		case 1:
+			gameOver.setHeaderText("Please check the ID, it must be a number!");
+			break;
+		case 2:
+			gameOver.setHeaderText("Please check the ID, it is empty...");
+			break;
+
+		default:
+			break;
+		}
+		
+		gameOver.showAndWait();
 	}
 
 	

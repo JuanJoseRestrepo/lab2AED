@@ -81,5 +81,10 @@ public class Stack<E> implements StackMethods<E> {
 		return number;
 	}
 	
+	
+	public void clearStack() {
+		setFirstNodeS(null);
+	}
+	
 
 } //end of class
