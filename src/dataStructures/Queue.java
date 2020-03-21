@@ -86,6 +86,11 @@ public class Queue<E> implements QueueMethods<E>{
 		
 	}
 	
+	
+	public void clearQueue() {
+		setFront(null);
+	}
+	
 
 	
 

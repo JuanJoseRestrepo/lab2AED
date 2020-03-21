@@ -136,6 +136,7 @@ public class PrincipalController implements Initializable{
 
 	public void addHorse(ActionEvent e) {
 		
+		
 		if(!scoreInicial.getChildren().isEmpty()) {
 			scoreInicial.getChildren().clear();
 			scoreFinal.getChildren().clear();
@@ -186,8 +187,9 @@ public class PrincipalController implements Initializable{
 		Optional<Horse> m1 = dialog.showAndWait();
 		
 		if(m1.isPresent()) {
-			
+
 				dealer.addHorseQueue(m1.get());
+				
 				if(dealer.getHorsesNames().size() <= 10) {
 					
 				dealer.getHorsesNames().add(m1.get().getHorseName());
@@ -233,7 +235,122 @@ public class PrincipalController implements Initializable{
 			}
 			System.out.println("No");
 		}
-}
+	}
+	
+	
+	public void searchBet(ActionEvent e) {
+		
+		if(!scoreInicial.getChildren().isEmpty()) {
+			scoreInicial.getChildren().clear();
+			scoreFinal.getChildren().clear();
+		}
+		
+	 
+		Dialog<String> dialog = new Dialog<>();
+		dialog.setTitle("");
+		dialog.setHeaderText("Please type the ID linked to the bet:");
+		dialog.setResizable(false);
+		 
+		Label label1 = new Label("ID: ");
+
+		TextField text1 = new TextField();
+		
+		         
+		GridPane grid = new GridPane();
+		grid.add(label1, 1, 1);
+		grid.add(text1, 2, 1);
+
+		dialog.getDialogPane().setContent(grid);
+		
+		ButtonType buttonTypeOk = new ButtonType("Search", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
+		
+		dialog.setResultConverter(new Callback<ButtonType, String>() {
+		    @Override
+		    public String call(ButtonType b) {
+		 
+		        if (b == buttonTypeOk) {
+		        	
+		        	try {
+		        		int mustBeNumber = Integer.parseInt(text1.getText());
+			        	
+			        	if(!text1.getText().isEmpty() ) {
+			        	String theKey = text1.getText();	
+			            return theKey;
+			        	}else {
+			        		showAlert(2);
+			        	}
+					} catch (Exception e2) {
+						showAlert(1);
+					}
+		        	
+		        }
+		 
+		        return null;
+		    }
+		});
+		setCss(dialog);
+		Optional<String> m2 = dialog.showAndWait();
+		
+		if(m2.isPresent()) {
+			User found = dealer.search4Gambler(m2.get());
+			if (found != null) {
+				Alert gameOver = new Alert(AlertType.INFORMATION);
+    			gameOver.setTitle("Here is your bet");
+    			
+    			String pos = "POSITION PENDING";
+    			int posHorse = found.getMyWinnerHorse().getPosition();
+    			
+    			String horseName = found.getMyWinnerHorse().getHorseName();
+    			String row = "ROW"+found.getMyWinnerHorse().getRow()+" ";
+    			
+    			
+    			if ( posHorse != -1) {
+    				if (posHorse == 1) {
+    					pos = "WINNER 1st PlACE";
+					} else {
+						pos = posHorse+" PLACE";
+					}
+					
+				}
+    			
+    			gameOver.setHeaderText(pos+" - "+row+horseName);
+    			
+    			String space = " \n ";
+    			gameOver.setContentText("ID: "+found.getId()+space+ "Name: "+found.getName()+space+ "Gamble : $"+found.getAmount());
+    			gameOver.showAndWait();
+    			//TODO
+			} else {
+				showAlert(3);
+			}
+		
+		}
+	
+	}
+	
+	
+	
+	public void showAlert(int msg) {
+		Alert gameOver = new Alert(AlertType.INFORMATION);
+		gameOver.setTitle("ERROR");
+		switch (msg) {
+		case 1:
+			gameOver.setHeaderText("Please check the ID, it must be a number!");
+			break;
+		case 2:
+			gameOver.setHeaderText("Please check the ID, it is empty...");
+			break;
+		case 3:
+			gameOver.setTitle("We are very sorry...");
+			gameOver.setHeaderText("But we could not find any bet linked to your ID");
+			break;
+
+		default:
+			break;
+		}
+		
+		gameOver.showAndWait();
+	}
 
 	
 	public void rematch() {
@@ -241,9 +358,10 @@ public class PrincipalController implements Initializable{
 	}	
 	
 	public void ramdomTest(ActionEvent e) {
-
-		if(scoreInicial.getChildren().isEmpty() == true) {
 			//dealer = new Dealer();
+		    scoreInicial.getChildren().clear();
+		    scoreFinal.getChildren().clear();
+			ramdom.setDisable(true);
 			dealer.generateHorses();	
 			beginMethodTime();
 			Label m = new Label("ROW - HORSE NAME");
@@ -254,17 +372,7 @@ public class PrincipalController implements Initializable{
 				Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
 				scoreInicial.getChildren().add(aux);
 				++row;
-			} 
-			
-		}else {
-			System.out.println(dealer.getHorses().size());
-			scoreInicial.getChildren().clear();
-			scoreFinal.getChildren().clear();
-			dealer.getHorsesNames().clear();
-			setTf1(true);
-			setTf(true);
-		}
-
+			}
 	}
 	
 	private void beginMethodTime() {
@@ -281,8 +389,7 @@ public class PrincipalController implements Initializable{
 	
 	public void finishRace() {
 		dealer.setWinners(false);
-		
-		
+
 		Label m = new Label("PODIUM");
 		scoreFinal.getChildren().add(m);	
 		
@@ -294,10 +401,9 @@ public class PrincipalController implements Initializable{
 			++pos;
 		}
 		
-		if(tf == true) {
-			scoreFinal.getChildren().clear();
-		}
-		
+		dealer.getHorses().setFront(null);
+			dealer.getHorsesNames().clear();
+			ramdom.setDisable(false);
 	}
 
 } //end of class

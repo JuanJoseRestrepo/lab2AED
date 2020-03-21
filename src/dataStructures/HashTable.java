@@ -61,33 +61,28 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 			nodes[index(key)] = checkNode;
 			
 		}else {
-			NodeH<K,V> newNode = new NodeH<K,V>(key, value);
 			
-			newNode.setNextNodeH(checkNode);
-			checkNode.setPriorNodeH(newNode);
-			nodes[index(key)] = newNode;
+			while(checkNode != null) {
+				
+				if(checkNode.getKey().equals(key)) {
+					checkNode.setValue(value);
+					return;
+				}
+				checkNode = checkNode.getNextNodeH();
+			}
 			
-//			while(checkNode != null) {
-//				
-//				if(checkNode.getKey().equals(key)) {
-//					checkNode.setValue(value);
-//					return;
-//				}
-//				checkNode = checkNode.getNextNodeH();
-//			}
-//			
-//			checkNode = nodes[index(key)];
-//			NodeH<K, V> newNodeH2 = new NodeH<K,V>(key, value);
-//			newNodeH2.setNextNodeH(checkNode);
-//			checkNode.setPriorNodeH(newNodeH2);
-//			nodes[index(key)] = newNodeH2;
+			checkNode = nodes[index(key)];
+			NodeH<K, V> newNodeH2 = new NodeH<K,V>(key, value);
+			newNodeH2.setNextNodeH(checkNode);
+			checkNode.setPriorNodeH(newNodeH2);
+			nodes[index(key)] = newNodeH2;
 		}
 		
 	}
 
 	@Override
 	public void delete(K key) {
-		
+		//TODO
 		NodeH<K,V> nodeActual = nodes[index(key)];
 		
 		if(nodeActual != null){

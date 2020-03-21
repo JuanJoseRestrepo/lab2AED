@@ -12,7 +12,7 @@ public class Dealer {
 	private HashTable<Integer, User> gamblers;
 	private int numberOfHorses;
 	private ArrayList<String> horsesNames;
-	
+	 
 	public Dealer() {
 		super();
 		horsesNames = new ArrayList<String>();
@@ -209,6 +209,13 @@ public class Dealer {
 		
 		return horsesSorted;
 		
+	}
+	
+	public User search4Gambler(String key) {
+		int keyI = Integer.parseInt(key);
+		User found = getGamblers().search(keyI);
+		
+		return found;
 	}
 	
 } //end of class
