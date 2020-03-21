@@ -212,9 +212,10 @@ public class Dealer {
 	}
 	
 	public User search4Gambler(String key) {
-		//TODO
+		int keyI = Integer.parseInt(key);
+		User found = getGamblers().search(keyI);
 		
-		return null;
+		return found;
 	}
 	
 } //end of class

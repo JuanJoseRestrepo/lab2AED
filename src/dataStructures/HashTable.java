@@ -82,7 +82,7 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 
 	@Override
 	public void delete(K key) {
-		
+		//TODO
 		NodeH<K,V> nodeActual = nodes[index(key)];
 		
 		if(nodeActual != null){

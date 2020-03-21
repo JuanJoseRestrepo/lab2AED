@@ -293,12 +293,42 @@ public class PrincipalController implements Initializable{
 		Optional<String> m1 = dialog.showAndWait();
 		
 		if(m1.isPresent()) {
+			User found = dealer.search4Gambler(m1.get());
+			if (found != null) {
+				Alert gameOver = new Alert(AlertType.INFORMATION);
+    			gameOver.setTitle("Here is your bet");
+    			
+    			String pos = "POSITION PENDING";
+    			int posHorse = found.getMyWinnerHorse().getPosition();
+    			
+    			String horseName = found.getMyWinnerHorse().getHorseName();
+    			String row = "ROW"+found.getMyWinnerHorse().getRow()+" ";
+    			
+    			
+    			if ( posHorse != -1) {
+    				if (posHorse == 1) {
+    					pos = "WINNER 1st PlACE";
+					} else {
+						pos = posHorse+" PLACE";
+					}
+					
+				}
+    			
+    			gameOver.setHeaderText(pos+" - "+row+horseName);
+    			
+    			String space = " \n ";
+    			gameOver.setContentText("ID: "+found.getId()+space+ "Name: "+found.getName()+space+ "Gamble : $"+found.getAmount());
+    			gameOver.showAndWait();
+    			//TODO
+			} else {
+				showAlert(3);
+			}
 		
-		
-		}else {
-			//TODO
 		}
+	
 	}
+	
+	
 	
 	public void showAlert(int msg) {
 		Alert gameOver = new Alert(AlertType.INFORMATION);
@@ -309,6 +339,10 @@ public class PrincipalController implements Initializable{
 			break;
 		case 2:
 			gameOver.setHeaderText("Please check the ID, it is empty...");
+			break;
+		case 3:
+			gameOver.setTitle("We are very sorry...");
+			gameOver.setHeaderText("But we could not find any bet linked to your ID");
 			break;
 
 		default:
