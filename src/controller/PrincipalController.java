@@ -168,15 +168,10 @@ public class PrincipalController implements Initializable{
 		 
 		        if (b == buttonTypeOk) {
 		        	if(!text1.getText().isEmpty() && !text2.getText().isEmpty()) {
-		        	Horse m2;	
-		            return m2 = new Horse(text1.getText(), text2.getText());
+		        	Horse m2 = new Horse(text1.getText(), text2.getText());	
+		            return m2;
 		        	}else {
-		    			Alert gameOver = new Alert(AlertType.INFORMATION);
-		    			gameOver.setTitle("Game Over!");
-		    			gameOver.setHeaderText("No puedes poner el puntaje vacio!");
-		    			gameOver.setContentText(
-		    					"Perdiste!!! Noooooooo");
-		    			gameOver.showAndWait();
+		    			showAlert(4);
 		        	}
 		        }
 		 
@@ -187,43 +182,38 @@ public class PrincipalController implements Initializable{
 		Optional<Horse> m1 = dialog.showAndWait();
 		
 		if(m1.isPresent()) {
-
-				dealer.addHorseQueue(m1.get());
-				
-				if(dealer.getHorsesNames().size() <= 10) {
-					
-				dealer.getHorsesNames().add(m1.get().getHorseName());
-				}
-				
-				Label m = new Label("ROW - HORSE NAME");
-				scoreInicial.getChildren().add(m);
-					
-				int row =1;
-				for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-					Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
-					scoreInicial.getChildren().add(aux);
-					++row;
-				}
-					 
-				 
-				if(dealer.getHorses().size() == 7) {
+			
+			if(dealer.getHorses().size() == 6) {
 				beginMethodTime();
-					System.out.println("Entre aqui hptass");
+				searchBet.setDisable(false);
+				addBet.setDisable(false);
+				
+				System.out.println("Entre aqui hptass");
 				
 			}else if(dealer.getHorses().size() >= 10) {
-    			Alert gameOver = new Alert(AlertType.INFORMATION);
-    			gameOver.setTitle("Game Over!");
-    			gameOver.setHeaderText("No puedes poner el puntaje vacio!");
-    			gameOver.setContentText(
-    					"Perdiste!!! Noooooooo");
-    			gameOver.showAndWait();
+				showAlert(5);
 			}
-				searchBet.setDisable(false);
-				rematch.setDisable(false);
-				addBet.setDisable(false);
+			
+			if(dealer.getHorsesNames().size() < 10) {
+				dealer.getHorsesNames().add(m1.get().getHorseName());
+				dealer.addHorseQueue(m1.get());
+			}
+			
+			Label m = new Label("ROW - HORSE NAME");
+			scoreInicial.getChildren().add(m);
+				
+			int row =1;
+			for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+				Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
+				scoreInicial.getChildren().add(aux);
+				++row;
+			}
+				 
+			 
 				
 			System.out.println("Si");
 			System.out.println(dealer.getHorses().size());
+			
 		}else {
 			Label m4 = new Label("ROW - HORSE NAME");
 			scoreInicial.getChildren().add(m4);
@@ -344,6 +334,12 @@ public class PrincipalController implements Initializable{
 			gameOver.setTitle("We are very sorry...");
 			gameOver.setHeaderText("But we could not find any bet linked to your ID");
 			break;
+		case 4:
+			gameOver.setHeaderText("Information missing");
+			break;
+		case 5:
+			gameOver.setHeaderText("There can only be 10 horses per race!");
+			break;
 
 		default:
 			break;
@@ -401,9 +397,11 @@ public class PrincipalController implements Initializable{
 			++pos;
 		}
 		
-		dealer.getHorses().setFront(null);
-			dealer.getHorsesNames().clear();
-			ramdom.setDisable(false);
+		dealer.getHorses().clearQueue();
+		dealer.getHorsesNames().clear();
+		dealer.setNumberOfHorses(0);
+		ramdom.setDisable(false);
+		rematch.setDisable(false);
 	}
 
 } //end of class
