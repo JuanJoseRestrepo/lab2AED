@@ -124,14 +124,8 @@ public class PrincipalController implements Initializable{
 		Image o = new Image("/controller/horseHipodromo.jpg",2400,820,true,true);
 		gift.setImage(i);
 		hipodrome.setImage(o);
-		
-		if(dealer.getHorses().size() == 2) {
-			for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-				Label aux = new Label(dealer.getHorsesNames().get(j));
-				scoreInicial.getChildren().add(aux);
-			}
-			
-		}
+		Label m4 = new Label("ROW - HORSE NAME");
+		scoreInicial.getChildren().add(m4);
 		
 		searchBet.setDisable(true);
 		rematch.setDisable(true);
@@ -141,6 +135,7 @@ public class PrincipalController implements Initializable{
 	
 
 	public void addHorse(ActionEvent e) {
+		
 		if(!scoreInicial.getChildren().isEmpty()) {
 			scoreInicial.getChildren().clear();
 			scoreFinal.getChildren().clear();
@@ -221,7 +216,10 @@ public class PrincipalController implements Initializable{
     					"Perdiste!!! Noooooooo");
     			gameOver.showAndWait();
 			}
-			
+				searchBet.setDisable(false);
+				rematch.setDisable(false);
+				addBet.setDisable(false);
+				
 			System.out.println("Si");
 			System.out.println(dealer.getHorses().size());
 		}else {
@@ -256,9 +254,10 @@ public class PrincipalController implements Initializable{
 				Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
 				scoreInicial.getChildren().add(aux);
 				++row;
-			}
+			} 
 			
 		}else {
+			System.out.println(dealer.getHorses().size());
 			scoreInicial.getChildren().clear();
 			scoreFinal.getChildren().clear();
 			dealer.getHorsesNames().clear();
@@ -293,6 +292,10 @@ public class PrincipalController implements Initializable{
 			Label aux = new Label(pos+". "+horsesSorted[j].getHorseName());
 			scoreFinal.getChildren().add(aux);
 			++pos;
+		}
+		
+		if(tf == true) {
+			scoreFinal.getChildren().clear();
 		}
 		
 	}

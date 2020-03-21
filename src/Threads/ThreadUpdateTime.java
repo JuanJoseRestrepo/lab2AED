@@ -7,7 +7,6 @@ public class ThreadUpdateTime extends Thread {
 
 	private String msj;
 	private PrincipalController m;
-	
 	public ThreadUpdateTime(String msj, PrincipalController m) {
 		super();
 		this.msj = msj;
@@ -18,7 +17,6 @@ public class ThreadUpdateTime extends Thread {
 	public void run() {
 		
 		Runnable win = new Runnable() {
-
 			@Override
 			public void run() {
 				m.updateTime(msj);

@@ -63,6 +63,8 @@ public class ThreadTime extends Thread{
 			}
 			ThreadUpdateTime timer1 = new ThreadUpdateTime(msj,principalCon);
 			Platform.runLater(timer1);
+
+			System.out.println("Hola hola");
 			try {
 				Thread.sleep(10);
 				
@@ -73,9 +75,10 @@ public class ThreadTime extends Thread{
 		}
 
 		
+		System.out.println("Holasdasd");
 		ThreadFinish m1 = new ThreadFinish(principalCon);
 		m1.start();
-				
+		
 			 
 	}
  
