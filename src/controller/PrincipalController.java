@@ -127,8 +127,6 @@ public class PrincipalController implements Initializable{
 		hipodrome.setImage(o);
 		Label m4 = new Label("ROW - HORSE NAME");
 		scoreInicial.getChildren().add(m4);
-		Label m5 = new Label("PODIUM");
-		scoreFinal.getChildren().add(m5);
 		
 		searchBet.setDisable(true);
 		rematch.setDisable(true);
@@ -144,7 +142,7 @@ public class PrincipalController implements Initializable{
 			scoreInicial.getChildren().clear();
 			scoreFinal.getChildren().clear();
 		}
-	
+
 		Dialog<Horse> dialog = new Dialog<>();
 		dialog.setTitle("");
 		dialog.setHeaderText("Please type the horseman's name and the horse's \n name in order to register the horse for the race");
@@ -188,13 +186,14 @@ public class PrincipalController implements Initializable{
 			
 			if(dealer.getHorses().size() == 6) {
 				beginMethodTime();
+				dealer.getGamblers().clearNodes();
 				searchBet.setDisable(false);
 				addBet.setDisable(false);
 				
 				System.out.println("Entre aqui hptass");
 				
 			}else if(dealer.getHorses().size() >= 10) {
-				showAlert(5);
+				showAlert(5); 
 			}
 			
 			if(dealer.getHorsesNames().size() < 10) {
@@ -220,6 +219,7 @@ public class PrincipalController implements Initializable{
 		}else {
 			Label m4 = new Label("ROW - HORSE NAME");
 			scoreInicial.getChildren().add(m4);
+
 			int row =1;
 			for(int j = 0; j < dealer.getHorsesNames().size();j++) {
 				Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
@@ -352,6 +352,34 @@ public class PrincipalController implements Initializable{
 	}
 
 	
+	public void showAlertUser(int msg) {
+		Alert gameOver = new Alert(AlertType.INFORMATION);
+		gameOver.setTitle("ERROR");
+		switch (msg) {
+		case 1:
+			gameOver.setHeaderText("Please check the ID, it must be a number!");
+			break;
+		case 2:
+			gameOver.setHeaderText("Please check the bet,some of the texts are empty...");
+			break;
+		case 3:
+			gameOver.setTitle("We are very sorry...");
+			gameOver.setHeaderText("But we could not find any bet linked to your ID");
+			break;
+		case 4:
+			gameOver.setHeaderText("Information missing");
+			break;
+		case 5:
+			gameOver.setHeaderText("There can only be 10 horses per race!");
+			break;
+
+		default:
+			break;
+		}
+		
+		gameOver.showAndWait();
+	}
+	
 	public void rematch(ActionEvent e) {
 
 		scoreInicial.getChildren().clear();
@@ -371,11 +399,84 @@ public class PrincipalController implements Initializable{
 	}
 	
 	public void addBet(ActionEvent e) {
-		//TODO
+		
+		Dialog<User> dialog = new Dialog<>();
+		dialog.setTitle("");
+		dialog.setHeaderText("Please type the bet:");
+		dialog.setResizable(false);
+		 
+		Label label1 = new Label("ID: ");
+
+		TextField text1 = new TextField();
+		
+		Label label2 = new Label("Your Name:  ");
+		
+		TextField text2 = new TextField();
+		
+		Label label3 = new Label("Horse name:  ");
+		
+		TextField text3 = new TextField();
+		
+		Label label4 = new Label("Please type your bet:  ");
+		
+		TextField text4 = new TextField();
+		
+		Label label5 = new Label("Please type the row:");
+		
+		TextField text5 = new TextField();
+		         
+		GridPane grid = new GridPane();
+		grid.add(label1, 1, 1);
+		grid.add(text1, 2, 1);
+		grid.add(label2, 1, 2);
+		grid.add(text2,2,2);
+		grid.add(label3,1,3);
+		grid.add(text3,2,3);
+		grid.add(label4,1,4);
+		grid.add(text4,2,4);
+		grid.add(label5,1,5);
+		grid.add(text5, 2, 5);
+
+		dialog.getDialogPane().setContent(grid);
+		
+		ButtonType buttonTypeOk = new ButtonType("Add", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
+		
+		dialog.setResultConverter(new Callback<ButtonType, User>() {
+		    @Override
+		    public User call(ButtonType b) {
+		 
+		        if (b == buttonTypeOk) {
+		        	
+		        	try {
+		        		int mustBeNumber = Integer.parseInt(text1.getText());
+			        	double mustBeDouble = Double.parseDouble(text4.getText());
+			        	
+			        	if(!text1.getText().isEmpty() && !text2.getText().isEmpty() && !text3.getText().isEmpty() && !text4.getText().isEmpty() && !text5.getText().isEmpty()) {
+			        	Horse aux1 = new Horse("","");
+			        	User aux = new User(mustBeNumber,label2.getText(),mustBeDouble,aux1);
+			            return aux;
+			        	}else {
+			        		showAlertUser(2);
+			        	}
+					} catch (Exception e2) {
+						showAlertUser(1);
+					}
+		        	
+		        }
+		 
+		        return null;
+		    }
+		});
+		
+		setCss(dialog);
+		Optional<User> m2 = dialog.showAndWait();
+		
 	}
 	
 	public void ramdomTest(ActionEvent e) {
 			
+			dealer.getGamblers().clearNodes();
 		    scoreInicial.getChildren().clear();
 		    scoreFinal.getChildren().clear();
 			ramdom.setDisable(true);

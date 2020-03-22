@@ -10,6 +10,10 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 		nodes = (NodeH<K,V>[])new NodeH[ARRAY_SIZE];
 	}
 	
+	public void clearNodes() {
+		nodes = (NodeH<K,V>[])new NodeH[ARRAY_SIZE];
+	}
+	
 	public int index(K key) {
 		int index = key.hashCode() % ARRAY_SIZE;
 		return index;

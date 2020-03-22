@@ -13,6 +13,7 @@ public class Dealer {
 	private int numberOfHorses;
 	private ArrayList<String> horsesNames;
 	private ArrayList<String> horsesNamesRematch;
+	private ArrayList<Node<Horse>> horsesForBet;
 	 
 	public Dealer() {
 		super();
@@ -20,6 +21,7 @@ public class Dealer {
 		horsesNamesRematch = new ArrayList<String>();
 		this.horses = new Queue<Horse>();
 		this.horsesRematch = new Stack<Horse>();
+		horsesForBet = new ArrayList<Node<Horse>>();
 		this.gamblers = new HashTable<Integer, User>();
 		this.numberOfHorses = 0;
 	} 
@@ -224,12 +226,53 @@ public class Dealer {
 		Horse[] horsesSorted = new Horse[getNumberOfHorses()+1];
 		
 		while (first != null) {
-			horsesSorted[first.getInfo().getPosition()] = first.getInfo();		
+			horsesSorted[first.getInfo().getPosition()] = first.getInfo();		  
 			first = first.getNext();
 		}
 		
 		return horsesSorted;
 		
+	}
+	
+	public Node<Horse> findHorseWithRow(String nameHorses,int row) {
+		Node<Horse> m = null;
+		
+		if(!horses.isEmpty()) {
+			
+			while(horses.peek() != null) {
+				
+				Node<Horse> aux = horses.peek();
+				horsesForBet.add(aux);
+				horses.poll();
+			}
+			
+			for(int i = 0; i < horsesForBet.size();i++) {
+				if(horsesForBet.get(i).getInfo().getHorseName().equalsIgnoreCase(nameHorses) && horsesForBet.get(i).getInfo().getRow() == row) {
+					
+					m = horsesForBet.get(i);
+					
+				}
+			}
+			
+		}else if(!horsesRematch.isEmpty()) {
+			
+			while(horsesRematch.peek() != null) {
+				Node<Horse> aux1 = horsesRematch.peek();
+				horsesForBet.add(aux1);
+				horsesRematch.pop();		
+			}
+			
+			for(int i = 0; i < horsesForBet.size();i++) {
+				if(horsesForBet.get(i).getInfo().getHorseName().equalsIgnoreCase(nameHorses) && horsesForBet.get(i).getInfo().getRow() == row) {
+					
+					m = horsesForBet.get(i);
+					
+				}
+			}
+			
+		}
+		
+		return m;
 	}
 	
 	public User search4Gambler(String key) {
