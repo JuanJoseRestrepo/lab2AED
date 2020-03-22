@@ -353,7 +353,6 @@ public class PrincipalController implements Initializable{
 
 	
 	public void rematch(ActionEvent e) {
-		
 
 		scoreInicial.getChildren().clear();
 		scoreFinal.getChildren().clear();
@@ -452,7 +451,6 @@ public class PrincipalController implements Initializable{
 			scoreFinal.getChildren().add(aux);
 			++pos;
 		}
-		
 		
 		dealer.getHorsesRematch().clearStack();
 		dealer.getHorsesNamesRematch().clear();

@@ -94,6 +94,7 @@ public class Dealer {
 		
 		if (rematch) {
 			firstHorse = getHorsesRematch().peek();
+			setNumberOfHorses(getHorsesRematch().size());
 		}
 		
 		ArrayList<Horse> positionsGiven = new ArrayList<Horse>();
@@ -115,9 +116,7 @@ public class Dealer {
 				++pos;
 			}
 			
-			
 		}
-		
 		
 	}
 	
