@@ -8,5 +8,5 @@ public interface HashTableMethods<K, V> {
 	
 	public void insert(K key, V value);
 	
-	public void delete(K key);
+	public void delate(K key);
 }

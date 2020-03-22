@@ -21,16 +21,90 @@ class HashTableTest {
 		table.insert(0, 140);
 	}
 	
+	private void setUpEscenario1() {
+		table = new HashTable<Integer,Integer>();
+	}
+	
+	private void setupEscenario2() {
+		table = new HashTable<Integer,Integer>();
+		table.insert(15, 140);
+	}
+//-------------------------------------------------------------------------------------------------------	
 	@Test
 	void test() {
 		setupEscenario();
+		assertEquals(table.getValue(15),160);
+	}
+	@Test
+	void testGetValueHash() {
+		setUpEscenario1();
+		assertEquals(table.getValue(200),null);
+	}
+	@Test
+	void testGetValueHash1() {
+		setupEscenario2();
 		assertEquals(table.getValue(15),140);
 	}
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	@Test
 	void testSearchValue() {
 		setupEscenario();
+		assertEquals(table.search(15),160);
+	}
+	
+	@Test
+	void testSearchValue1() {
+		setUpEscenario1();
+		assertEquals(table.search(16),null);
+	}
+	
+	@Test
+	void testSearchTable2() {
+		setupEscenario2();
 		assertEquals(table.search(15),140);
 	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@Test
+	void testInsertHash() {
+		setupEscenario();
+		table.insert(16,3012);
+		assertEquals(table.search(16),3012);
+	}
+	
+	@Test
+	void testInsertHash1() {
+	setUpEscenario1();
+	table.insert(15, 16000);
+	assertEquals(table.search(15),16000);
+	}
+	
+	@Test
+	void testInsertHash2() {
+		setupEscenario2();
+		table.insert(0, 33);
+		assertEquals(table.search(0),33);
+	}
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	@Test
+	void testDelateHash(){
+			
+	}
+	
+	
+	@Test
+	void testDelateHash1(){
+			
+	}
+	
+	@Test
+	void testDelateHash2(){
+			
+	}
+	
+	
+//-------------------------------------------------------------------------------------------------------	
 
 }
