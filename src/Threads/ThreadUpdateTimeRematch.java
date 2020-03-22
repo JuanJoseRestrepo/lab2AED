@@ -25,6 +25,6 @@ public class ThreadUpdateTimeRematch extends Thread {
 
 				Platform.runLater(win);
 			
-}
+	}
 	
 }

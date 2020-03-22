@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import com.sun.javafx.logging.Logger;
 
 import Threads.ThreadTime;
+import Threads.ThreadTimeRematch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -371,7 +372,7 @@ public class PrincipalController implements Initializable{
 	}
 	
 	public void addBet(ActionEvent e) {
-		
+		//TODO
 	}
 	
 	public void ramdomTest(ActionEvent e) {
@@ -400,7 +401,7 @@ public class PrincipalController implements Initializable{
 	
 	private void beginMethodRematch(){
 		
-		ThreadTime t = new ThreadTime(this);		
+		ThreadTimeRematch t = new ThreadTimeRematch(this);		
 		t.start();	
 		
 	}
@@ -417,13 +418,16 @@ public class PrincipalController implements Initializable{
 		Label m = new Label("PODIUM");
 		scoreFinal.getChildren().add(m);	
 		
-		Horse[] horsesSorted = dealer.sortByPosition();
+		Horse[] horsesSorted = dealer.sortByPosition(false);
+		
 		int pos = 1;
+		
 		for(int j = 1; j < horsesSorted.length;j++) {
 			Label aux = new Label(pos+". "+horsesSorted[j].getHorseName());
 			scoreFinal.getChildren().add(aux);
 			++pos;
 		}
+		
 		dealer.fillStack4Rematch();
 		dealer.getHorses().clearQueue();
 		dealer.getHorsesNames().clear();
@@ -434,10 +438,27 @@ public class PrincipalController implements Initializable{
 	
 	public void finishRaceRematch() {
 		
-		dealer.setWinners(false);
+		dealer.setWinners(true);
 
 		Label m = new Label("PODIUM");
 		scoreFinal.getChildren().add(m);
+
+		Horse[] horsesSorted = dealer.sortByPosition(true);
+		
+		int pos = 1;
+		
+		for(int j = 1; j < horsesSorted.length;j++) {
+			Label aux = new Label(pos+". "+horsesSorted[j].getHorseName());
+			scoreFinal.getChildren().add(aux);
+			++pos;
+		}
+		
+		
+		dealer.getHorsesRematch().clearStack();
+		dealer.getHorsesNamesRematch().clear();
+		dealer.setNumberOfHorses(0);
+		ramdom.setDisable(false);
+		rematch.setDisable(true);
 		
 	}
 

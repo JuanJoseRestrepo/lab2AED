@@ -87,6 +87,7 @@ public class Dealer {
 	
 	}
 	
+	//WHEN THE PARAMETER IS TRUE, IT WILL SET THE WINNERS FOR THE STACK, OTHERWISE IT WILL BE FOR THE QUEUE
 	
 	public void setWinners(boolean rematch) {
 		Node<Horse> firstHorse = getHorses().peek();
@@ -132,6 +133,7 @@ public class Dealer {
 			sortedByPosition[pos] = nodeInMatter;
 			
 		}
+		
 		int rowNumber =1; 
 		int i = sortedByPosition.length;
 		--i;
@@ -147,7 +149,7 @@ public class Dealer {
 			++rowNumber;
 			
 		}
-		System.out.println();
+		
 		
 	}
 	
@@ -211,8 +213,15 @@ public class Dealer {
 		
 	}
 	
-	public Horse[] sortByPosition() {
-		Node<Horse> first = getHorses().peek();
+	public Horse[] sortByPosition(boolean valueRematch) {
+		Node<Horse> first = null;
+		
+		if (valueRematch) {
+			first = getHorsesRematch().peek();
+		} else {
+			first = getHorses().peek();
+		} 
+		
 		Horse[] horsesSorted = new Horse[getNumberOfHorses()+1];
 		
 		while (first != null) {
