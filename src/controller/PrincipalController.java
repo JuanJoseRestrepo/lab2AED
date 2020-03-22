@@ -451,9 +451,10 @@ public class PrincipalController implements Initializable{
 		        	try {
 		        		int mustBeNumber = Integer.parseInt(text1.getText());
 			        	double mustBeDouble = Double.parseDouble(text4.getText());
-			        	
+			        	int rowPosition = Integer.parseInt(text5.getText());
 			        	if(!text1.getText().isEmpty() && !text2.getText().isEmpty() && !text3.getText().isEmpty() && !text4.getText().isEmpty() && !text5.getText().isEmpty()) {
 			        	Horse aux1 = new Horse("","");
+			        	dataStructures.Node<Horse> aux2 = dealer.findHorseWithRow(text3.getText(),rowPosition);
 			        	User aux = new User(mustBeNumber,label2.getText(),mustBeDouble,aux1);
 			            return aux;
 			        	}else {
