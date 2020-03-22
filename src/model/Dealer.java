@@ -124,18 +124,19 @@ public class Dealer {
 	//, OTHERWISE IT WONT WORK
 	
 	public void fillStack4Rematch() {
-		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()];
+		
+		Node<Horse>[] sortedByPosition = new Node[getNumberOfHorses()+1];
 		while (horses.isEmpty() == false) {
 			Node<Horse> nodeInMatter = horses.poll();
 			int pos = nodeInMatter.getInfo().getPosition();
-			--pos;
 			sortedByPosition[pos] = nodeInMatter;
 			
 		}
 		int rowNumber =1; 
 		int i = sortedByPosition.length;
 		--i;
-		while (i>=0) {
+		
+		while (i>0) {
 			Node<Horse> best = sortedByPosition[i];
 			horsesNamesRematch.add(best.getInfo().getHorseName());
 			horsesRematch.push(best);
@@ -146,6 +147,7 @@ public class Dealer {
 			++rowNumber;
 			
 		}
+		System.out.println();
 		
 	}
 	

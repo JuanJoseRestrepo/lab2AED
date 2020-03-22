@@ -57,6 +57,7 @@ public class Stack<E> implements StackMethods<E> {
 			 
 			 if(aux != null) {
 				 aux.setPrior(null);
+				 first.setNext(null);
 				 
 			 }
 			setFirstNodeS(aux);

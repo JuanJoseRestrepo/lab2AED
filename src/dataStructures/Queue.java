@@ -51,6 +51,7 @@ public class Queue<E> implements QueueMethods<E>{
 			Node<E> next2TheOne = theOne.getNext();
 			if (next2TheOne != null) {
 				next2TheOne.setPrior(null);
+				theOne.setNext(null);
 			}
 			setFront(next2TheOne);
 		}

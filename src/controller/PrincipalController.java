@@ -375,7 +375,7 @@ public class PrincipalController implements Initializable{
 	}
 	
 	public void ramdomTest(ActionEvent e) {
-			//dealer = new Dealer();
+			
 		    scoreInicial.getChildren().clear();
 		    scoreFinal.getChildren().clear();
 			ramdom.setDisable(true);
