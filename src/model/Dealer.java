@@ -234,46 +234,31 @@ public class Dealer {
 		
 	}
 	
-	public Node<Horse> findHorseWithRow(String nameHorses,int row) {
-		Node<Horse> m = null;
+	
+	
+	public Node<Horse> findHorseWithRow(String nameHorses, int row) {
+		Node<Horse> first = null;
 		
-		if(!horses.isEmpty()) {
+		if (getHorses().isEmpty()) { //case when is a rematch, queue is empty
+			first = getHorsesRematch().peek();
 			
-			while(horses.peek() != null) {
-				
-				Node<Horse> aux = horses.peek();
-				horsesForBet.add(aux);
-				horses.poll();
-			}
-			
-			for(int i = 0; i < horsesForBet.size();i++) {
-				if(horsesForBet.get(i).getInfo().getHorseName().equalsIgnoreCase(nameHorses) && horsesForBet.get(i).getInfo().getRow() == row) {
-					
-					m = horsesForBet.get(i);
-					
-				}
-			}
-			
-		}else if(!horsesRematch.isEmpty()) {
-			
-			while(horsesRematch.peek() != null) {
-				Node<Horse> aux1 = horsesRematch.peek();
-				horsesForBet.add(aux1);
-				horsesRematch.pop();		
-			}
-			
-			for(int i = 0; i < horsesForBet.size();i++) {
-				if(horsesForBet.get(i).getInfo().getHorseName().equalsIgnoreCase(nameHorses) && horsesForBet.get(i).getInfo().getRow() == row) {
-					
-					m = horsesForBet.get(i);
-					
-				}
-			}
-			
+		} else {
+			first = getHorses().peek();
 		}
 		
-		return m;
+		while (first != null ) {
+			
+			if (nameHorses.equalsIgnoreCase(first.getInfo().getHorseName()) && row == first.getInfo().getRow()) {
+				return first;
+			}
+			
+			first = first.getNext();
+			
+		}
+		return null;		
 	}
+	
+	
 	
 	public User search4Gambler(String key) {
 		int keyI = Integer.parseInt(key);

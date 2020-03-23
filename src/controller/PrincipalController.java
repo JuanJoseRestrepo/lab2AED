@@ -128,9 +128,9 @@ public class PrincipalController implements Initializable{
 		Label m4 = new Label("ROW - HORSE NAME");
 		scoreInicial.getChildren().add(m4);
 		
-		searchBet.setDisable(true);
+		//searchBet.setDisable(true);
 		rematch.setDisable(true);
-		addBet.setDisable(true);
+		//addBet.setDisable(true);
 
 	}
 	
@@ -343,34 +343,11 @@ public class PrincipalController implements Initializable{
 		case 5:
 			gameOver.setHeaderText("There can only be 10 horses per race!");
 			break;
-
-		default:
-			break;
-		}
-		
-		gameOver.showAndWait();
-	}
-
-	
-	public void showAlertUser(int msg) {
-		Alert gameOver = new Alert(AlertType.INFORMATION);
-		gameOver.setTitle("ERROR");
-		switch (msg) {
-		case 1:
-			gameOver.setHeaderText("Please check the ID, it must be a number!");
-			break;
-		case 2:
+		case 6:
 			gameOver.setHeaderText("Please check the bet,some of the texts are empty...");
 			break;
-		case 3:
-			gameOver.setTitle("We are very sorry...");
-			gameOver.setHeaderText("But we could not find any bet linked to your ID");
-			break;
-		case 4:
-			gameOver.setHeaderText("Information missing");
-			break;
-		case 5:
-			gameOver.setHeaderText("There can only be 10 horses per race!");
+		case 7:
+			gameOver.setHeaderText("Please check the horse picked, because we cannot find it");
 			break;
 
 		default:
@@ -379,6 +356,7 @@ public class PrincipalController implements Initializable{
 		
 		gameOver.showAndWait();
 	}
+
 	
 	public void rematch(ActionEvent e) {
 
@@ -432,10 +410,11 @@ public class PrincipalController implements Initializable{
 		grid.add(text2,2,2);
 		grid.add(label3,1,3);
 		grid.add(text3,2,3);
-		grid.add(label4,1,4);
-		grid.add(text4,2,4);
-		grid.add(label5,1,5);
-		grid.add(text5, 2, 5);
+		grid.add(label5,1,4);
+		grid.add(text5, 2, 4);
+		grid.add(label4,1,5);
+		grid.add(text4,2,5);
+		
 
 		dialog.getDialogPane().setContent(grid);
 		
@@ -449,19 +428,28 @@ public class PrincipalController implements Initializable{
 		        if (b == buttonTypeOk) {
 		        	
 		        	try {
+		        		
 		        		int mustBeNumber = Integer.parseInt(text1.getText());
 			        	double mustBeDouble = Double.parseDouble(text4.getText());
 			        	int rowPosition = Integer.parseInt(text5.getText());
+			        	
 			        	if(!text1.getText().isEmpty() && !text2.getText().isEmpty() && !text3.getText().isEmpty() && !text4.getText().isEmpty() && !text5.getText().isEmpty()) {
-			        	Horse aux1 = new Horse("","");
-			        	dataStructures.Node<Horse> aux2 = dealer.findHorseWithRow(text3.getText(),rowPosition);
-			        	User aux = new User(mustBeNumber,label2.getText(),mustBeDouble,aux1);
-			            return aux;
+				        	
+			        		dataStructures.Node<Horse> horse4Bet = dealer.findHorseWithRow(text3.getText() ,rowPosition); //dependency
+			        		
+			        		Horse theHorse = null;
+			        		if (horse4Bet != null) {
+								theHorse = horse4Bet.getInfo();
+							}
+			        		
+				        	User gambler = new User(mustBeNumber, text2.getText(), mustBeDouble, theHorse);
+				            
+				        	return gambler;
 			        	}else {
-			        		showAlertUser(2);
+			        		showAlert(6);
 			        	}
 					} catch (Exception e2) {
-						showAlertUser(1);
+						showAlert(1);
 					}
 		        	
 		        }
@@ -471,7 +459,15 @@ public class PrincipalController implements Initializable{
 		});
 		
 		setCss(dialog);
-		Optional<User> m2 = dialog.showAndWait();
+		Optional<User> gambler = dialog.showAndWait();
+		User finalGambler = gambler.get();
+		
+		if (finalGambler.getMyWinnerHorse() != null) {
+			dealer.addGambler(finalGambler);
+		} else {
+			showAlert(7);
+		}
+		
 		
 	}
 	
