@@ -65,12 +65,12 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 			nodes[index(key)] = checkNode;
 			
 		}else {
-			boolean t = false;
-			while(checkNode != null && !t) {
+			
+			while(checkNode != null) {
 				
 				if(checkNode.getKey().equals(key)) {
 					checkNode.setValue(value);
-					t = true;
+					return;
 				}
 				checkNode = checkNode.getNextNodeH();
 			}

@@ -16,8 +16,8 @@ class HashTableTest {
 		table = new HashTable<Integer,Integer>();
 		hashTable = table.getNodes();
 	
-		table.insert(15, 140);
-		table.insert(15, 160);
+		table.insert(233, 140);
+		table.insert(0, 160);
 		table.insert(0, 140);
 	}
 	
@@ -33,7 +33,7 @@ class HashTableTest {
 	@Test
 	void test() {
 		setupEscenario();
-		assertEquals(table.getValue(15),160);
+		assertEquals(table.getValue(0),140);
 	}
 	@Test
 	void testGetValueHash() {
@@ -49,7 +49,7 @@ class HashTableTest {
 	@Test
 	void testSearchValue() {
 		setupEscenario();
-		assertEquals(table.search(15),160);
+		assertEquals(table.search(233),140);
 	}
 	
 	@Test
@@ -92,7 +92,7 @@ class HashTableTest {
 	void testDelateHash(){
 		setupEscenario();
 		table.delate(15);
-		assertEquals(table.search(15),160);
+		assertEquals(table.search(0),140);
 	}
 	
 	
