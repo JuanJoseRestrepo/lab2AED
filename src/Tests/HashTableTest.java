@@ -90,7 +90,9 @@ class HashTableTest {
 	
 	@Test
 	void testDelateHash(){
-			
+		setupEscenario();
+		table.delate(15);
+		assertEquals(table.search(15),null);
 	}
 	
 	

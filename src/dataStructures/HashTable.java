@@ -65,12 +65,12 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 			nodes[index(key)] = checkNode;
 			
 		}else {
-			
-			while(checkNode != null) {
+			boolean t = false;
+			while(checkNode != null && !t) {
 				
 				if(checkNode.getKey().equals(key)) {
 					checkNode.setValue(value);
-					return;
+					t = true;
 				}
 				checkNode = checkNode.getNextNodeH();
 			}
@@ -90,20 +90,27 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 		NodeH<K,V> nodeActual = nodes[index(key)];
 		
 		if(nodeActual != null){
-			
-			while(nodeActual != null) {
+			boolean t = false;
+			while(nodeActual != null && !t) {
 				
 				if(nodeActual.getKey().equals(key)) {
-					
-					
-					
+					if(nodeActual.getPriorNodeH() != null) {
+						nodeActual.getPriorNodeH().setNextNodeH(nodeActual.getNextNodeH());
+					}
+				 	if(nodeActual.getNextNodeH() != null) {
+				 		nodeActual.getNextNodeH().setPriorNodeH(nodeActual.getPriorNodeH());
+				 	}
+					nodeActual = nodeActual.getNextNodeH();
+					nodes[index(key)] = nodeActual;
+					if(nodeActual == null) {
+						t = true;
+					}else {
+						nodeActual = nodeActual.getNextNodeH();
+					}
 				}
-				nodeActual = nodeActual.getNextNodeH();
 			}
 			
 			
-		} else {
-			return;
 		}
 		
 	}
