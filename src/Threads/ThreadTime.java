@@ -13,7 +13,7 @@ public class ThreadTime extends Thread{
 	private int minutes = 0;
 	
 	private PrincipalController principalCon;
-
+ 
 	public ThreadTime(PrincipalController principalCon) {
 		super();
 		this.principalCon = principalCon;

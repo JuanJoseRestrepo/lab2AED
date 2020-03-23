@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -128,15 +129,14 @@ public class PrincipalController implements Initializable{
 		Label m4 = new Label("ROW - HORSE NAME");
 		scoreInicial.getChildren().add(m4);
 		
-		//searchBet.setDisable(true);
+	 	searchBet.setDisable(true);
 		rematch.setDisable(true);
-		//addBet.setDisable(true);
+		addBet.setDisable(true);
 
 	}
 	
 
 	public void addHorse(ActionEvent e) {
-		
 		
 		if(!scoreInicial.getChildren().isEmpty()) {
 			scoreInicial.getChildren().clear();
@@ -190,7 +190,7 @@ public class PrincipalController implements Initializable{
 				searchBet.setDisable(false);
 				addBet.setDisable(false);
 				
-				System.out.println("Entre aqui hptass");
+				System.out.println("Entre aqui hptass");  
 				
 			}else if(dealer.getHorses().size() >= 10) {
 				showAlert(5); 
@@ -232,13 +232,7 @@ public class PrincipalController implements Initializable{
 	
 	
 	public void searchBet(ActionEvent e) {
-		
-		if(!scoreInicial.getChildren().isEmpty()) {
-			scoreInicial.getChildren().clear();
-			scoreFinal.getChildren().clear();
-		}
-		
-	 
+
 		Dialog<String> dialog = new Dialog<>();
 		dialog.setTitle("");
 		dialog.setHeaderText("Please type the ID linked to the bet:");
@@ -359,9 +353,12 @@ public class PrincipalController implements Initializable{
 
 	
 	public void rematch(ActionEvent e) {
-
+		
+		dealer.getGamblers().clearNodes();
 		scoreInicial.getChildren().clear();
 		scoreFinal.getChildren().clear();
+		addBet.setDisable(false);
+		searchBet.setDisable(false);
 		Label m = new Label("ROW - HORSE NAME");
 		scoreInicial.getChildren().add(m);
 		
@@ -439,16 +436,17 @@ public class PrincipalController implements Initializable{
 			        		
 			        		Horse theHorse = null;
 			        		if (horse4Bet != null) {
-								theHorse = horse4Bet.getInfo();
-							}
+								theHorse =  new Horse(horse4Bet.getInfo().getHorsemanName(),horse4Bet.getInfo().getHorseName());
+							}else {
+				        		showAlert(6);
+				        	}
 			        		
 				        	User gambler = new User(mustBeNumber, text2.getText(), mustBeDouble, theHorse);
 				            
 				        	return gambler;
-			        	}else {
-			        		showAlert(6);
-			        	}
-					} catch (Exception e2) {
+
+			        	} 
+					}catch(Exception e3) {
 						showAlert(1);
 					}
 		        	
@@ -460,6 +458,7 @@ public class PrincipalController implements Initializable{
 		
 		setCss(dialog);
 		Optional<User> gambler = dialog.showAndWait();
+		try {
 		User finalGambler = gambler.get();
 		
 		if (finalGambler.getMyWinnerHorse() != null) {
@@ -468,12 +467,16 @@ public class PrincipalController implements Initializable{
 			showAlert(7);
 		}
 		
+		}catch(Exception e4) {
+			showAlert(1);
+		}
+	
 		
 	}
 	
 	public void ramdomTest(ActionEvent e) {
 			
-			dealer.getGamblers().clearNodes();
+		    dealer.getGamblers().clearNodes();
 		    scoreInicial.getChildren().clear();
 		    scoreFinal.getChildren().clear();
 			ramdom.setDisable(true);
@@ -531,6 +534,7 @@ public class PrincipalController implements Initializable{
 		dealer.setNumberOfHorses(0);
 		ramdom.setDisable(false);
 		rematch.setDisable(false);
+		addBet.setDisable(true);
 	}
 	
 	public void finishRaceRematch() {
@@ -555,7 +559,7 @@ public class PrincipalController implements Initializable{
 		dealer.setNumberOfHorses(0);
 		ramdom.setDisable(false);
 		rematch.setDisable(true);
-		
+		addBet.setDisable(true);
 	}
 
 } //end of class

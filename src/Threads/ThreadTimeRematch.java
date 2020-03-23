@@ -62,7 +62,7 @@ public class ThreadTimeRematch extends Thread {
 			ThreadUpdateTimeRematch timer1 = new ThreadUpdateTimeRematch(msj,principalCon);
 			Platform.runLater(timer1);
 			try {
-				Thread.sleep(10);
+				Thread.sleep(1000);
 				
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block 
