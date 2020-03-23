@@ -91,22 +91,22 @@ class HashTableTest {
 	@Test
 	void testDelateHash(){
 		setupEscenario();
-		table.delate(15);
-		assertEquals(table.search(0),140);
+		table.delete(0);
+		assertEquals(table.search(233),140);
 	}
 	
 	
 	@Test
 	void testDelateHash1(){
 		setUpEscenario1();
-		table.delate(16);
+		table.delete(16);
 		assertEquals(table.search(16),null);
 	}
 	
 	@Test
 	void testDelateHash2(){
 		setupEscenario2();
-		table.delate(15);
+		table.delete(15);
 		assertEquals(table.search(15),null);
 	}
 	

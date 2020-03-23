@@ -85,13 +85,16 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 	}
 
 	@Override
-	public void delate(K key) {
+	public void delete(K key) {
 		//TODO
 		NodeH<K,V> nodeActual = nodes[index(key)];
 		
-		if(nodeActual != null){
-			boolean t = false;
-			while(nodeActual != null && !t) {
+		if(nodeActual == null){
+			return;
+			
+		}else {
+
+			while(nodeActual != null ) {
 				
 				if(nodeActual.getKey().equals(key)) {
 					if(nodeActual.getPriorNodeH() != null) {
@@ -102,18 +105,17 @@ public class HashTable<K,V> implements HashTableMethods<K, V> {
 				 	}
 					nodeActual = nodeActual.getNextNodeH();
 					nodes[index(key)] = nodeActual;
-					if(nodeActual == null) {
-						t = true;
-					}else {
-						nodeActual = nodeActual.getNextNodeH();
-					}
+					return;
 				}
+					nodeActual = nodeActual.getNextNodeH();
+
 			}
-			
-			
-		}
 		
+		}
+	
 	}
+
+
 
 	
 	

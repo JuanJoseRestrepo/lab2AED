@@ -129,9 +129,9 @@ public class PrincipalController implements Initializable{
 		Label m4 = new Label("ROW - HORSE NAME");
 		scoreInicial.getChildren().add(m4);
 		
-	 	searchBet.setDisable(true);
+	 	//searchBet.setDisable(true);
 		rematch.setDisable(true);
-		addBet.setDisable(true);
+		//addBet.setDisable(true);
 
 	}
 	
@@ -232,7 +232,8 @@ public class PrincipalController implements Initializable{
 	
 	
 	public void searchBet(ActionEvent e) {
-
+		
+	 
 		Dialog<String> dialog = new Dialog<>();
 		dialog.setTitle("");
 		dialog.setHeaderText("Please type the ID linked to the bet:");
@@ -353,6 +354,11 @@ public class PrincipalController implements Initializable{
 
 	
 	public void rematch(ActionEvent e) {
+		dealer.fillStack4Rematch();
+		dealer.getHorses().clearQueue();
+		dealer.getHorsesNames().clear();
+		dealer.setNumberOfHorses(0);
+		
 		
 		dealer.getGamblers().clearNodes();
 		scoreInicial.getChildren().clear();
@@ -436,17 +442,16 @@ public class PrincipalController implements Initializable{
 			        		
 			        		Horse theHorse = null;
 			        		if (horse4Bet != null) {
-								theHorse =  new Horse(horse4Bet.getInfo().getHorsemanName(),horse4Bet.getInfo().getHorseName());
-							}else {
-				        		showAlert(6);
-				        	}
+								theHorse = horse4Bet.getInfo();
+							}
 			        		
 				        	User gambler = new User(mustBeNumber, text2.getText(), mustBeDouble, theHorse);
 				            
 				        	return gambler;
-
-			        	} 
-					}catch(Exception e3) {
+			        	}else {
+			        		showAlert(6);
+			        	}
+					} catch (Exception e2) {
 						showAlert(1);
 					}
 		        	
@@ -458,7 +463,6 @@ public class PrincipalController implements Initializable{
 		
 		setCss(dialog);
 		Optional<User> gambler = dialog.showAndWait();
-		try {
 		User finalGambler = gambler.get();
 		
 		if (finalGambler.getMyWinnerHorse() != null) {
@@ -467,10 +471,6 @@ public class PrincipalController implements Initializable{
 			showAlert(7);
 		}
 		
-		}catch(Exception e4) {
-			showAlert(1);
-		}
-	
 		
 	}
 	
@@ -528,10 +528,7 @@ public class PrincipalController implements Initializable{
 			++pos;
 		}
 		
-		dealer.fillStack4Rematch();
-		dealer.getHorses().clearQueue();
-		dealer.getHorsesNames().clear();
-		dealer.setNumberOfHorses(0);
+		
 		ramdom.setDisable(false);
 		rematch.setDisable(false);
 		addBet.setDisable(true);
