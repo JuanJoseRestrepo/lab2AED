@@ -129,9 +129,9 @@ public class PrincipalController implements Initializable{
 		Label m4 = new Label("ROW - HORSE NAME");
 		scoreInicial.getChildren().add(m4);
 		
-	 	//searchBet.setDisable(true);
+	 	searchBet.setDisable(true);
 		rematch.setDisable(true);
-		//addBet.setDisable(true);
+		addBet.setDisable(true);
 
 	}
 	
@@ -354,6 +354,10 @@ public class PrincipalController implements Initializable{
 
 	
 	public void rematch(ActionEvent e) {
+		
+		ramdom.setDisable(true);
+		rematch.setDisable(true);
+		
 		dealer.fillStack4Rematch();
 		dealer.getHorses().clearQueue();
 		dealer.getHorsesNames().clear();
@@ -475,22 +479,25 @@ public class PrincipalController implements Initializable{
 	}
 	
 	public void ramdomTest(ActionEvent e) {
+		
+		addBet.setDisable(false);
+		searchBet.setDisable(false);
 			
-		    dealer.getGamblers().clearNodes();
-		    scoreInicial.getChildren().clear();
-		    scoreFinal.getChildren().clear();
-			ramdom.setDisable(true);
-			dealer.generateHorses();	
-			beginMethodTime();
-			Label m = new Label("ROW - HORSE NAME");
-			scoreInicial.getChildren().add(m);
-			
-			int row =1;
-			for(int j = 0; j < dealer.getHorsesNames().size();j++) {
-				Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
-				scoreInicial.getChildren().add(aux);
-				++row;
-			}
+	    dealer.getGamblers().clearNodes();
+	    scoreInicial.getChildren().clear();
+	    scoreFinal.getChildren().clear();
+		ramdom.setDisable(true);
+		dealer.generateHorses();	
+		beginMethodTime();
+		Label m = new Label("ROW - HORSE NAME");
+		scoreInicial.getChildren().add(m);
+		
+		int row =1;
+		for(int j = 0; j < dealer.getHorsesNames().size();j++) {
+			Label aux = new Label(row+" - "+dealer.getHorsesNames().get(j));
+			scoreInicial.getChildren().add(aux);
+			++row;
+		}
 	}
 	
 	private void beginMethodTime() {
