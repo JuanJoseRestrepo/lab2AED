@@ -73,7 +73,7 @@ public class ThreadTime extends Thread{
 		}
 
 		
-		System.out.println("Holasdasd");
+		
 		ThreadFinish m1 = new ThreadFinish(principalCon);
 		m1.start();
 		

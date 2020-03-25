@@ -71,7 +71,7 @@ public class ThreadTimeRematch extends Thread {
 		}
 
 		
-		System.out.println("Holasdasd");
+		
 		ThreadFinishRematch m1 = new ThreadFinishRematch(principalCon);
 		m1.start();
 		

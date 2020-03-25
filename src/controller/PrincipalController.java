@@ -190,7 +190,7 @@ public class PrincipalController implements Initializable{
 				searchBet.setDisable(false);
 				addBet.setDisable(false);
 				
-				System.out.println("Entre aqui hptass");  
+				  
 				
 			}else if(dealer.getHorses().size() >= 10) {
 				showAlert(5); 
@@ -213,8 +213,7 @@ public class PrincipalController implements Initializable{
 				 
 			 
 				
-			System.out.println("Si");
-			System.out.println(dealer.getHorses().size());
+			
 			
 		}else {
 			Label m4 = new Label("ROW - HORSE NAME");
@@ -226,7 +225,7 @@ public class PrincipalController implements Initializable{
 				scoreInicial.getChildren().add(aux);
 				++row;
 			}
-			System.out.println("No");
+			
 		}
 	}
 	
