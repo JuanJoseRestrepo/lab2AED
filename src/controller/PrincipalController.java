@@ -533,8 +533,9 @@ public class PrincipalController implements Initializable{
 			scoreFinal.getChildren().add(aux);
 			++pos;
 		}
-		
-		
+		dealer.getHorses().clearQueue();
+		dealer.getHorsesNames().clear();
+		dealer.setNumberOfHorses(0);
 		ramdom.setDisable(false);
 		rematch.setDisable(false);
 		addBet.setDisable(true);
